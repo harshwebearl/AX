@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import AboutSection from "../Components/AboutSection";
 import ServiceSection from "../Components/ServiceSection";
-import ProductSection from "../Components/DigitalShowcaseCarousel";
 import DigitalShowcaseCarousel from "../Components/DigitalShowcaseCarousel";
 
 
