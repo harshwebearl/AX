@@ -23,7 +23,7 @@ export default function Home() {
       setIndex((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans pt-18 md:pt-22 ">
