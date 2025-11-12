@@ -1,53 +1,246 @@
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+import AboutSection from "../Components/AboutSection";
+import ServiceSection from "../Components/ServiceSection";
+import ProductSection from "../Components/DigitalShowcaseCarousel";
+import DigitalShowcaseCarousel from "../Components/DigitalShowcaseCarousel";
+
 
 export default function Home() {
+
+  const images = [
+    "/images/project/1.jpg",
+    "/images/project/2.jpg",
+    "/images/project/3.jpg",
+    "/images/project/4.jpg",
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  // Auto-change image every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans pt-18 md:pt-22 ">
-    
-      {/* Hero Section */}
-      <section  className="flex flex-col items-center justify-center text-center py-24 bg-[#2C4953] text-white">
-        <h2 className="text-4xl font-bold mb-4 ">You Dream, We Design</h2>
-        <p className="max-w-xl text-lg mb-8 ">
-          Creating timeless spaces through architecture, interior design, and civil work.
-        </p>
-        <a
-          href="#contact"
-          className="bg-white text-[#2C4953] px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition"
-        >
-          Get in Touch
-        </a>
+
+      <section className="relative h-[70vh] md:h-screen flex items-center justify-center overflow-hidden bg-[url(/images/project/6.jpg)] bg-cover bg-center">
+        {/* Animated Background */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={images[index]}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${images[index]})` }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            exit={{ scaleX: 0 }}
+            transition={{
+              duration: 1.9,
+              ease: [0.77, 0, 0.175, 1], // smooth "spread" feel
+            }}
+            transformOrigin="center"
+          />
+        </AnimatePresence>
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        {/* Content */}
+        <div className="relative z-10 text-center text-white px-4">
+          <motion.h1
+            key={index + "-heading"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-4xl md:text-7xl font-bold font-[Vollkorn] tracking-wide drop-shadow-md"
+          >
+            Building Dreams, <br /> Designing Reality
+          </motion.h1>
+          <motion.p
+            key={index + "-para"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2 }}
+            className="mt-6 text-lg md:text-xl max-w-2xl mx-auto font-light tracking-wide"
+          >
+            We design refined spaces with precision and creativity, blending function and form to create elegant, innovative environments.
+          </motion.p>
+
+          <Link
+            to="/projects"
+            className="inline-block bg-white text-[#2C4953] mt-10 px-8 py-3 rounded-full font-semibold tracking-wider uppercase hover:bg-[#2C4953] hover:text-white transition duration-300"
+          >
+            Explore Projects
+          </Link>
+
+        </div>
+        {/* Decorative Line */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-24 h-[1px] bg-white opacity-50"></div>
       </section>
 
-      {/* About Section */}
-      <section className="py-16 px-6 md:px-16">
-        <h3 className="text-3xl font-semibold text-center text-[#2C4953] mb-8">About Us</h3>
-        <p className="text-center max-w-3xl mx-auto text-gray-700 leading-relaxed">
-          At AAxiero Design Studio, we blend creativity with functionality to deliver innovative architectural and interior design solutions.
-          Our team is passionate about turning your dream spaces into reality — from concept to completion.
-        </p>
-      </section>
+      <AboutSection />
+      <ServiceSection />
+      <DigitalShowcaseCarousel />
 
-      {/* Services Section */}
-      <section className="bg-gray-50 py-16 px-6 md:px-16">
-        <h3 className="text-3xl font-semibold text-center text-[#2C4953] mb-12">Our Services</h3>
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-white shadow-lg p-6 rounded-2xl text-center">
-            <h4 className="text-xl font-semibold mb-3 text-[#2C4953]">Architecture Design</h4>
-            <p>Creative and sustainable architectural solutions for residential and commercial projects.</p>
-          </div>
-          <div className="bg-white shadow-lg p-6 rounded-2xl text-center">
-            <h4 className="text-xl font-semibold mb-3 text-[#2C4953]">Interior Design</h4>
-            <p>Transforming interiors into beautiful, functional, and inspiring spaces tailored to you.</p>
-          </div>
-          <div className="bg-white shadow-lg p-6 rounded-2xl text-center">
-            <h4 className="text-xl font-semibold mb-3 text-[#2C4953]">Civil Work</h4>
-            <p>Reliable construction and project execution ensuring quality and durability.</p>
+
+      <section className="relative bg-[#f7f9f9] overflow-hidden pb-20">
+        {/* Decorative Glow Background */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#6b8c9a]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] bg-[#2C4953]/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+          {/* Header */}
+          <motion.h2
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-5xl md:text-6xl font-[Vollkorn] text-[#2C4953] font-bold text-center mb-6"
+          >
+            Get In <span className="text-[#6b8c9a]">Touch</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+            className="text-gray-600 max-w-2xl mx-auto text-lg text-center mb-16"
+          >
+            Let’s collaborate to design timeless spaces that inspire. Whether it’s residential, commercial, or conceptual —
+            we’d love to hear your vision.
+          </motion.p>
+
+          {/* Contact Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Left: Contact Details */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col gap-8 text-[#2C4953]"
+            >
+              <a href="tel:+91 99984 88480" > <div className="flex items-center gap-4">
+                <div className="p-4 bg-[#2C4953]/10 rounded-full">
+                  {/* <FaPhoneAlt className="text-2xl text-[#2C4953]" /> */}
+                  <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
+                </div>
+                <div>
+                  <h4 className="text-3xl font-bold font-['Tangerine'] ">Phone</h4>
+                  <a
+                    href="tel:+91 99984 88480"
+                    className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
+                  >
+                    +91 99984 88480
+                  </a>
+                </div>
+              </div></a>
+
+              <a href="mailto:support@apnawebx.com" > <div className="flex items-center gap-4">
+                <div className="p-4 bg-[#2C4953]/10 rounded-full">
+                  {/* <FaEnvelope className="text-2xl text-[#2C4953]" /> */}
+                  <i className="fa-solid fa-envelope text-2xl text-[#2C4953]"></i>
+                </div>
+                <div>
+                  <h4 className="text-3xl font-semibold font-['Tangerine']">Email</h4>
+                  <a
+                    href="mailto:support@apnawebx.com"
+                    className="text-gray-700 hover:text-[#6b8c9a] transition-colors font-[Vollkorn]"
+                  >
+                    support@apnawebx.com
+                  </a>
+                </div>
+              </div>
+              </a>
+
+              <a href="/" target="_blank" >
+                <div className="flex items-center gap-4">
+                  <div className="p-4 bg-[#2C4953]/10 rounded-full">
+                    {/* <FaLocationDot className="text-2xl text-[#2C4953]" /> */}
+                    <i className="fa-solid fa-location-dot text-2xl text-[#2C4953]"></i>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-semibold font-['Tangerine']">Studio</h4>
+                    <p className="text-gray-700 font-[Vollkorn]">
+                      Nikol, Ahmedabad, Gujarat, India
+                    </p>
+                  </div>
+                </div>
+              </a>
+
+              <div className="mt-10">
+                <a
+                  href="/contact"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-[#2C4953] text-white px-5 md:px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#1f3740] transition-all duration-300 font-['Tangerine'] text-3xl"
+                >
+                  Let’s Discuss Your Project
+                </a>
+              </div>
+            </motion.div>
+
+
+            <div className="relative bg-[url(/images/logo/contact-bg.jpg)] bg-cover bg-center rounded-2xl">
+            {/* Right: Contact Form */}
+            <div className="absolute inset-0 bg-[#d5dbdd]/80 rounded-2xl"></div>
+            <motion.form
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              onSubmit={(e) => e.preventDefault()}
+              className="relative z-10 bg-transparent shadow-lg rounded-2xl p-8 border border-gray-200 "
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <input
+                  type="text"
+                  placeholder="Your Phone"
+                  className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                />
+                <input
+                  type="text"
+                  placeholder="Subject"
+                  className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                />
+
+              </div>
+
+              <textarea
+                placeholder="Your Message"
+                rows="5"
+                className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+              ></textarea>
+              <button
+                type="submit"
+                className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Tangerine'] text-3xl"
+              >
+                Send Message
+              </button>
+            </motion.form>
+            </div>
           </div>
         </div>
       </section>
 
-     
 
-      
+
+
+
+
     </div>
   );
 }
