@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import AboutSection from "../Components/AboutSection";
 import ServiceSection from "../Components/ServiceSection";
+import AchievementSection from "../Components/AchievementSection";
 import DigitalShowcaseCarousel from "../Components/DigitalShowcaseCarousel";
 
 
@@ -85,9 +86,10 @@ export default function Home() {
       <AboutSection />
       <ServiceSection />
       <DigitalShowcaseCarousel />
+      <AchievementSection />
 
 
-      <section className="relative bg-[#f7f9f9] overflow-hidden pb-20">
+      <section className="relative bg-[#f7f9f9] overflow-hidden pb-20 pt-20">
         {/* Decorative Glow Background */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#6b8c9a]/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] bg-[#2C4953]/10 rounded-full blur-3xl"></div>
@@ -122,6 +124,22 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="flex flex-col gap-8 text-[#2C4953]"
             >
+              <a href="tel:+91 99984 88480" > <div className="flex items-center gap-4">
+                <div className="p-4 bg-[#2C4953]/10 rounded-full">
+                  {/* <FaPhoneAlt className="text-2xl text-[#2C4953]" /> */}
+                  <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
+                </div>
+                <div>
+                  <h4 className="text-3xl font-bold font-['Tangerine'] ">Phone</h4>
+                  <a
+                    href="tel:+91 99984 88480"
+                    className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
+                  >
+                    +91 99984 88480
+                  </a>
+                </div>
+              </div></a>
+              
               <a href="tel:+91 99984 88480" > <div className="flex items-center gap-4">
                 <div className="p-4 bg-[#2C4953]/10 rounded-full">
                   {/* <FaPhoneAlt className="text-2xl text-[#2C4953]" /> */}

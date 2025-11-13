@@ -1,73 +1,196 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import AchievementSection from "../Components/AchievementSection";
+import Breadchrumb from "../Components/Breadchrumb";
+import TestimonialsSection from '../Components/TestimonialSection';
+import { FaArrowRight } from 'react-icons/fa';
 
 const About = () => {
-  return (
+  return (<>
 
-    <div className='pt-18 md:pt-22'>
-         <section className="relative bg-[#ffffff] py-24 md:py-32 overflow-hidden">
-      {/* Background Accents */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-[#6b8c9a]/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#2C4953]/10 rounded-full blur-3xl"></div>
+    <Breadchrumb />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center gap-14 relative z-10">
-        {/* Left Content */}
+    <div className=' '>
+      <section className="relative bg-[#ffffff] py-14 overflow-hidden">
+        {/* Background Accents */}
+        <div className="absolute top-0 right-0 w-72 h-72 bg-[#6b8c9a]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#2C4953]/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center gap-14 relative z-10">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full md:w-1/2 text-left"
+          >
+            <h2 className="text-4xl md:text-5xl font-[Vollkorn] text-[#2C4953] font-bold mb-6">
+              Our <span className="text-[#6b8c9a]">Design Philosophy</span>
+            </h2>
+
+            <p className="text-gray-700 text-lg leading-relaxed mb-6 font-[Vollkorn]">
+              We believe architecture is not just about structures, but experiences.
+              At <span className="font-semibold text-[#2C4953]">AAxiero Design Studio</span>,
+              every space we create tells a story — shaped by light, balance, material, and human emotion.
+            </p>
+
+            <p className="text-gray-600 text-sm leading-relaxed mb-8 font-[Vollkorn]">
+              Our design approach blends artistic vision with practical innovation.
+              Each line, texture, and detail is crafted with precision — transforming everyday places into meaningful environments.
+            </p>
+
+            <div className="flex flex-wrap gap-6 mt-6">
+              <div className="bg-[#253f47] text-white px-6 py-4 rounded-xl shadow-md w-[220px] hover:bg-[#476772] transition-all duration-300">
+                <h4 className="text-3xl font-semibold mb-1 font-['Tangerine']">Precision</h4>
+                <p className="text-sm text-gray-200 font-[Vollkorn]">Every line and detail reflects accuracy and purpose.</p>
+              </div>
+
+              <div className="bg-[#476772] text-white px-6 py-4 rounded-xl shadow-md w-[220px] hover:bg-[#253f47] transition-all duration-300">
+                <h4 className="text-3xl font-semibold mb-1 font-['Tangerine']">Innovation</h4>
+                <p className="text-sm text-gray-200 font-[Vollkorn]">We integrate new design ideas and sustainable concepts.</p>
+              </div>
+
+
+            </div>
+          </motion.div>
+
+          {/* Right Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative w-full md:w-1/2"
+          >
+            <img
+              src="/images/project/12.jpg"
+              alt="Architectural Design Philosophy"
+              className="w-full h-[350px] md:h-[500px] object-cover rounded-2xl shadow-2xl"
+            />
+            <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-[#6b8c9a]/20 rounded-full blur-2xl"></div>
+          </motion.div>
+
+        </div>
+      </section>
+    </div>
+
+
+    <AchievementSection />
+
+
+    <section className="relative bg-[#f7f7f7] py-10 md:pt-10 md:pb-28 overflow-hidden">
+      <div className="max-w-7xl mx-auto pt-6 px-6 md:px-12 flex flex-col lg:flex-row items-center gap-12">
+        {/* Left Image Section */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 text-center md:text-left"
+          className="relative w-full lg:w-1/2"
         >
-          <h2 className="text-5xl md:text-6xl font-[Vollkorn] text-[#2C4953] font-bold mb-6">
-            Our <span className="text-[#6b8c9a]">Design Philosophy</span>
-          </h2>
-
-          <p className="text-gray-700 text-lg leading-relaxed mb-6">
-            We believe architecture is not just about structures, but experiences.  
-            At <span className="font-semibold text-[#2C4953]">AAxiero Design Studio</span>, 
-            every space we create tells a story — shaped by light, balance, material, and human emotion.
-          </p>
-
-          <p className="text-gray-600 text-base leading-relaxed mb-8">
-            Our design approach blends artistic vision with practical innovation.  
-            Each line, texture, and detail is crafted with precision — transforming everyday places into meaningful environments.
-          </p>
-
-          <div className="flex flex-wrap gap-6 mt-6">
-            <div className="bg-[#2C4953] text-white px-6 py-4 rounded-xl shadow-md w-[220px] hover:bg-[#1e3239] transition-all duration-300">
-              <h4 className="text-xl font-semibold mb-1 font-[Vollkorn]">Precision</h4>
-              <p className="text-sm text-gray-200">Every line and detail reflects accuracy and purpose.</p>
-            </div>
-
-            <div className="bg-[#6b8c9a] text-white px-6 py-4 rounded-xl shadow-md w-[220px] hover:bg-[#557882] transition-all duration-300">
-              <h4 className="text-xl font-semibold mb-1 font-[Vollkorn]">Innovation</h4>
-              <p className="text-sm text-gray-200">We integrate new design ideas and sustainable concepts.</p>
-            </div>
-
-            <div className="bg-[#2C4953] text-white px-6 py-4 rounded-xl shadow-md w-[220px] hover:bg-[#1e3239] transition-all duration-300">
-              <h4 className="text-xl font-semibold mb-1 font-[Vollkorn]">Harmony</h4>
-              <p className="text-sm text-gray-200">Balancing aesthetics, functionality, and natural context.</p>
-            </div>
+          <img
+            src="/images/project/11.jpg"
+            alt="Architecture Studio"
+            className="rounded-2xl shadow-2xl w-full md:h-[500px] h-[300px] sm:h-[400px] object-cover"
+          />
+          <div className="absolute -bottom-8 md:-right-8 bg-white shadow-xl p-3 md:p-6 rounded-xl">
+            <h3 className="text-4xl font-['Tangerine'] text-[#2C4953]">10+</h3>
+            <p className="text-gray-600 text-sm font-semibold tracking-wide font-[Vollkorn]">
+              Years of Design Excellence
+            </p>
           </div>
         </motion.div>
 
-        {/* Right Image */}
+        {/* Right Content Section */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative w-full md:w-1/2"
+          className="w-full lg:w-1/2 text-left"
         >
-          <img
-            src="/images/about/philosophy.jpg"
-            alt="Architectural Design Philosophy"
-            className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
-          />
-          <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-[#6b8c9a]/20 rounded-full blur-2xl"></div>
+          <h2 className="text-5xl md:text-6xl font-['Tangerine'] text-[#2C4953] font-bold mt-3 mb-6">
+            About <span className="text-[#6b8c9a]">AAxiero</span>
+          </h2>
+          <p className="text-gray-700 text-lg leading-relaxed mb-6 font-[Vollkorn]">
+            At AAxiero Design Studio, we believe that architecture is more than
+            just structure — it’s the art of shaping experiences. Our designs
+            merge aesthetics and functionality, bringing creativity, precision,
+            and timeless elegance into every project.
+          </p>
+          <p className="text-gray-600 text-base leading-relaxed mb-8 font-[Vollkorn]">
+            From residential masterpieces to commercial landmarks, we craft
+            spaces that tell stories — rooted in innovation, sustainability, and
+            the essence of modern design.
+          </p>
+
         </motion.div>
       </div>
+
+      {/* Decorative Shapes */}
+      <div className="absolute top-0 left-0 w-40 h-40 bg-[#2C4953]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-60 h-60 bg-[#6b8c9a]/10 rounded-full blur-3xl"></div>
     </section>
-    </div>
+
+
+    <TestimonialsSection />
+
+    <section className="relative py-24 md:py-32 bg-[#ffffff] overflow-hidden">
+      
+      {/* Background Glow Accents */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#6b8c9a]/20 rounded-full blur-3xl opacity-50"></div>
+      <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] bg-[#2C4953]/20 rounded-full blur-3xl opacity-40"></div>
+
+      <div className="max-w-5xl mx-auto px-6 md:px-12 relative z-10 text-center">
+        
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl md:text-6xl font-[Vollkorn] font-bold text-[#2C4953] mb-6 leading-tight"
+        >
+          Let’s Build Your  
+          <span className="text-[#6b8c9a]"> Dream Space </span>
+          Together
+        </motion.h2>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="text-gray-600 max-w-2xl mx-auto text-lg mb-10 font-[Vollkorn]"
+        >
+          Whether it's a home, commercial project, or a conceptual space —
+          AAxiero Design Studio is ready to bring your vision to life with creativity and precision.
+        </motion.p>
+
+        {/* CTA Button */}
+        <motion.a
+          href="/contact"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="inline-flex items-center gap-3 bg-[#2C4953] text-white px-10 py-4 rounded-full font-semibold tracking-wide text-lg hover:bg-[#1f3740] transition-all duration-300 shadow-lg"
+        >
+          Start Your Project <FaArrowRight />
+        </motion.a>
+
+        {/* Decorative Line */}
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 140 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="h-[2px] bg-[#2C4953]/40 mx-auto mt-10"
+        ></motion.div>
+
+      </div>
+    </section>
+
+
+
+    
+
+  </>
+
   )
 }
 

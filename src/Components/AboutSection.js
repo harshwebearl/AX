@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const AboutSection = () => {
   return (
     <section className="relative bg-[#f7f7f7] py-20 md:py-28 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-12">
+          <div className="max-w-7xl mx-auto pt-6 px-6 md:px-12 flex flex-col lg:flex-row items-center gap-12">
             {/* Left Image Section */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}

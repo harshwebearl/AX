@@ -1,8 +1,12 @@
 import React from 'react'
+import Breadchrumb from "../Components/Breadchrumb";
 
 const Projects = () => {
-  return (
-    <div className='pt-18 md:pt-22'>Projects</div>
+  return (<>
+  
+  <Breadchrumb />
+  <div>Projects</div>
+  </>
   )
 }
 
