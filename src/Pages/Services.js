@@ -4,7 +4,7 @@ import Breadchrumb from "../Components/Breadchrumb";
 const Services = () => {
   return (<>
     <Breadchrumb />
-    <div className='pt-18 md:pt-22'>Services</div>
+    <div className=''>Services</div>
   </>
   )
 }
