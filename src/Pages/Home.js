@@ -5,6 +5,7 @@ import AboutSection from "../Components/AboutSection";
 import ServiceSection from "../Components/ServiceSection";
 import AchievementSection from "../Components/AchievementSection";
 import DigitalShowcaseCarousel from "../Components/DigitalShowcaseCarousel";
+import CostCalculator from "../Components/CostCalculator";
 
 
 export default function Home() {
@@ -87,6 +88,9 @@ export default function Home() {
       <ServiceSection />
       <DigitalShowcaseCarousel />
       <AchievementSection />
+      <CostCalculator />
+
+      
 
 
       <section className="relative bg-[#f7f9f9] overflow-hidden pb-20 pt-20">

@@ -2,8 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaDraftingCompass, FaBuilding, FaCouch, FaTree } from "react-icons/fa";
 
-export default function Services() {
-  const services = [
+export default function Gallery() {
+  const Gallery = [
     {
       icon: <FaDraftingCompass className="text-4xl text-[#2C4953]" />,
       title: "Architectural Design",
@@ -42,7 +42,7 @@ export default function Services() {
           transition={{ duration: 0.7 }}
           className="text-5xl md:text-6xl font-['Tangerine'] text-[#2C4953] font-bold mb-6"
         >
-          Our <span className="text-[#6b8c9a] ">Services</span>
+          Our <span className="text-[#6b8c9a] ">Gallery</span>
         </motion.h2>
 
         <motion.p
@@ -56,7 +56,7 @@ export default function Services() {
 
         {/* Service Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-10 m-5 md:m-0">
-          {services.map((service, index) => (
+          {Gallery.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 0 }}

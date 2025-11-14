@@ -1,6 +1,7 @@
 import React from 'react'
 import Breadchrumb from "../Components/Breadchrumb";
 import { motion } from "framer-motion";
+import CostCalculator from '../Components/CostCalculator';
 
 const Contact = () => {
 
@@ -170,6 +171,9 @@ const Contact = () => {
         </div>
       </div>
     </section>
+
+
+    <CostCalculator />
 
 
      <section className="py-12 bg-[#f7f9f9]">

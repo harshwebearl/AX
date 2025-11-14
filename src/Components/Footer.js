@@ -34,7 +34,7 @@ const Footer = () => {
           <ul className="space-y-2 pt-5 text-gray-700 border-t text-3xl font-bold border-gray-200 font-['Tangerine']">
             <li><Link to="/" className="hover:text-[#2C4953] transition">Home</Link></li>
             <li><Link to="/about" className="hover:text-[#2C4953] transition">About</Link></li>
-            <li><Link to="/services" className="hover:text-[#2C4953] transition">Services</Link></li>
+            <li><Link to="/Gallery" className="hover:text-[#2C4953] transition">Gallery</Link></li>
             <li><Link to="/projects" className="hover:text-[#2C4953] transition">Projects</Link></li>
             <li><Link to="/contact" className="hover:text-[#2C4953] transition">Contact</Link></li>
           </ul>
@@ -49,7 +49,7 @@ const Footer = () => {
           <ul className="space-y-2 pt-5 text-gray-700 border-t text-3xl font-bold border-gray-200 font-['Tangerine']">
             <li><Link to="/home" className="hover:text-[#2C4953] transition">Architecture Work</Link></li>
             <li><Link to="/about" className="hover:text-[#2C4953] transition">House Interior</Link></li>
-            <li><Link to="/services" className="hover:text-[#2C4953] transition">Office Interior</Link></li>
+            <li><Link to="/Gallery" className="hover:text-[#2C4953] transition">Office Interior</Link></li>
             <li><Link to="/projects" className="hover:text-[#2C4953] transition">Bunglow Interior</Link></li>
           </ul>
         </div>

@@ -18,9 +18,10 @@ export default function Navbar() {
   const menuItemsLeft = [
     { name: "Home", id: "home", path: "/" },
     { name: "About", id: "about", path: "/about" },
-    { name: "Services", id: "services", path: "/services" },
+    { name: "Gallery", id: "Gallery", path: "/Gallery" },
   ];
   const menuItemsRight = [
+    { name: "Services", id: "services", path: "/services" },
     { name: "Projects", id: "projects", path: "/projects" },
     { name: "Contact", id: "contact", path: "/contact" },
   ];
@@ -30,7 +31,7 @@ export default function Navbar() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-[#d5dbdd]/80"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex justify-between items-center px-4 py-6 md:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:py-6 md:px-6">
         {/* Left Menu */}
         <ul className="hidden md:flex space-x-8 text-[#2C4953] font-medium tracking-wide">
           {menuItemsLeft.map((item) => (
@@ -102,6 +103,12 @@ export default function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+        <button
+          className="md:hidden text-[#2C4953] text-2xl"
+          // onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <a href="tel:+919998488480" > <i className="fa-solid fa-phone"></i></a> : <a href="tel:+919998488480" > <i className="fa-solid fa-phone"></i></a>} 
         </button>
       </div>
 
