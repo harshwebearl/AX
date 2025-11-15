@@ -19,7 +19,8 @@ const AboutSection = () => {
                 className="rounded-2xl shadow-2xl w-full md:h-[500px] h-[300px] sm:h-[400px] object-cover"
               />
               <div className="absolute -bottom-8 md:-right-8 bg-white shadow-xl p-3 md:p-6 rounded-xl">
-                <h3 className="text-4xl font-['Tangerine'] text-[#2C4953]">10+</h3>
+                <h3 className="text-4xl font-['Cormorant_Garamond']
+ text-[#2C4953]">10+</h3>
                 <p className="text-gray-600 text-sm font-semibold tracking-wide font-[Vollkorn]">
                   Years of Design Excellence
                 </p>
@@ -33,7 +34,8 @@ const AboutSection = () => {
               transition={{ duration: 0.8 }}
               className="w-full lg:w-1/2 text-left"
             >
-              <h2 className="text-5xl md:text-6xl font-['Tangerine'] text-[#2C4953] font-bold mt-3 mb-6">
+              <h2 className="text-5xl md:text-6xl font-['Cormorant_Garamond']
+ text-[#2C4953] font-bold mt-3 mb-6">
                 About <span className="text-[#6b8c9a]">AAxiero</span>
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6 font-[Vollkorn]">
@@ -50,7 +52,8 @@ const AboutSection = () => {
             
               <a
                 href="/about"
-                className="inline-block bg-[#2C4953] text-white px-8 py-3 rounded-full font-semibold tracking-wide hover:bg-[#1e3239] transition-all duration-300 font-['Tangerine'] text-2xl"
+                className="inline-block bg-[#2C4953] text-white px-8 py-3 rounded-full font-semibold tracking-wide hover:bg-[#1e3239] transition-all duration-300 font-['Cormorant_Garamond']
+ text-2xl"
               >
                 Explore Us
               </a>

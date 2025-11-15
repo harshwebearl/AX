@@ -56,7 +56,8 @@ export default function Breadcrumb() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-gray-200 mt-0 text-4xl md:text-5xl max-w-2xl mx-auto leading-relaxed font-['Tangerine']"
+          className="text-gray-200 mt-0 text-4xl md:text-5xl max-w-2xl mx-auto leading-relaxed font-['Cormorant_Garamond']
+"
         >
           {formattedName}
         </motion.p>

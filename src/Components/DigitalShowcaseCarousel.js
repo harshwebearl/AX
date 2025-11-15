@@ -113,10 +113,11 @@ export default function DigitalShowcaseCarousel() {
 
               {/* Info */}
               <div className="p-6 text-left">
-                <h3 className="text-2xl font-semibold text-[#2C4953] font-[Vollkorn] mb-1 hover:text-[#6b8c9a] transition-colors ">
+                <h3 className="text-2xl font-bold text-[#2C4953] font-[Vollkorn] mb-1 hover:text-[#6b8c9a] transition-colors ">
                   {item.title}
                 </h3>
-                <p className="text-3xl text-gray-900 font-bold italic mb-2 font-['Tangerine']">{item.category}</p>
+                <p className="text-xl text-gray-900 font-bold italic mb-2 font-['Cormorant_Garamond']
+">{item.category}</p>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4 h-[50px] font-[Vollkorn]">{item.desc}</p>
                 
               </div>

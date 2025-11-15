@@ -134,7 +134,8 @@ export default function Home() {
                   <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold font-['Tangerine'] ">Phone</h4>
+                  <h4 className="text-3xl font-bold font-['Cormorant_Garamond']
+ ">Phone</h4>
                   <a
                     href="tel:+91 99984 88480"
                     className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
@@ -150,7 +151,8 @@ export default function Home() {
                   <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold font-['Tangerine'] ">Phone</h4>
+                  <h4 className="text-3xl font-bold font-['Cormorant_Garamond']
+ ">Phone</h4>
                   <a
                     href="tel:+91 99984 88480"
                     className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
@@ -160,18 +162,19 @@ export default function Home() {
                 </div>
               </div></a>
 
-              <a href="mailto:support@apnawebx.com" > <div className="flex items-center gap-4">
+              <a href="mailto:aaxierodesignstudio@gmail.com" > <div className="flex items-center gap-4">
                 <div className="p-4 bg-[#2C4953]/10 rounded-full">
                   {/* <FaEnvelope className="text-2xl text-[#2C4953]" /> */}
                   <i className="fa-solid fa-envelope text-2xl text-[#2C4953]"></i>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-semibold font-['Tangerine']">Email</h4>
+                  <h4 className="text-3xl font-semibold font-['Cormorant_Garamond']
+">Email</h4>
                   <a
-                    href="mailto:support@apnawebx.com"
+                    href="mailto:aaxierodesignstudio@gmail.com"
                     className="text-gray-700 hover:text-[#6b8c9a] transition-colors font-[Vollkorn]"
                   >
-                    support@apnawebx.com
+                    aaxierodesignstudio@gmail.com
                   </a>
                 </div>
               </div>
@@ -184,7 +187,8 @@ export default function Home() {
                     <i className="fa-solid fa-location-dot text-2xl text-[#2C4953]"></i>
                   </div>
                   <div>
-                    <h4 className="text-3xl font-semibold font-['Tangerine']">Studio</h4>
+                    <h4 className="text-3xl font-semibold font-['Cormorant_Garamond']
+">Studio</h4>
                     <p className="text-gray-700 font-[Vollkorn]">
                       Nikol, Ahmedabad, Gujarat, India
                     </p>
@@ -196,7 +200,8 @@ export default function Home() {
                 <a
                   href="/contact"
                   rel="noopener noreferrer"
-                  className="inline-block bg-[#2C4953] text-white px-5 md:px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#1f3740] transition-all duration-300 font-['Tangerine'] text-3xl"
+                  className="inline-block bg-[#2C4953] text-white px-5 md:px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#1f3740] transition-all duration-300 font-['Cormorant_Garamond']
+ text-3xl"
                 >
                   Let’s Discuss Your Project
                 </a>
@@ -247,7 +252,8 @@ export default function Home() {
               ></textarea>
               <button
                 type="submit"
-                className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Tangerine'] text-3xl"
+                className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Cormorant_Garamond']
+ text-3xl"
               >
                 Send Message
               </button>

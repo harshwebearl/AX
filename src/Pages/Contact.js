@@ -6,7 +6,7 @@ import CostCalculator from '../Components/CostCalculator';
 const Contact = () => {
 
   const src =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.06606420704!2d72.62978937436753!3d23.02134641637571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e87c1edffa9f1%3A0xcface792ea8b83fc!2sApnaWebX!5e0!3m2!1sen!2sin!4v1763024301176!5m2!1sen!2sin";
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.481267715443!2d72.67345587224087!3d23.042811069535833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e872afbed72a5%3A0x26f8538d2d1da325!2sAAxiero%20design%20studio!5e0!3m2!1sen!2sin!4v1763183911976!5m2!1sen!2sin";
 
 
   return (<>
@@ -51,71 +51,71 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col gap-8 text-[#2C4953]"
           >
-            <a href="tel:+91 99984 88480" > <div className="flex items-center gap-4">
+            <a href="tel:+91 84604 31159" > <div className="flex items-center gap-4">
               <div className="p-4 bg-[#2C4953]/10 rounded-full">
                 {/* <FaPhoneAlt className="text-2xl text-[#2C4953]" /> */}
                 <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
               </div>
               <div>
-                <h4 className="text-3xl font-bold font-['Tangerine'] ">Phone</h4>
+                <h4 className="text-3xl font-bold font-['Cormorant_Garamond']">Jenish Faldu</h4>
                 <a
-                  href="tel:+91 99984 88480"
+                  href="tel:+91 84604 31159"
                   className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
                 >
-                  +91 99984 88480
+                  +91 84604 31159
                 </a>
               </div>
             </div></a>
 
-            <a href="tel:+91 99984 88480" > <div className="flex items-center gap-4">
+            <a href="tel:+91 81416 72731" > <div className="flex items-center gap-4">
               <div className="p-4 bg-[#2C4953]/10 rounded-full">
                 {/* <FaPhoneAlt className="text-2xl text-[#2C4953]" /> */}
                 <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
               </div>
               <div>
-                <h4 className="text-3xl font-bold font-['Tangerine'] ">Phone</h4>
+                <h4 className="text-3xl font-bold font-['Cormorant_Garamond'] ">Apoorva Patel</h4>
                 <a
-                  href="tel:+91 99984 88480"
+                  href="tel:+91 81416 72731"
                   className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
                 >
-                  +91 99984 88480
+                  +91 81416 72731
                 </a>
               </div>
             </div></a>
 
-            <a href="mailto:support@apnawebx.com" > <div className="flex items-center gap-4">
+            <a href="mailto:aaxierodesignstudio@gmail.com" > <div className="flex items-center gap-4">
               <div className="p-4 bg-[#2C4953]/10 rounded-full">
                 {/* <FaEnvelope className="text-2xl text-[#2C4953]" /> */}
                 <i className="fa-solid fa-envelope text-2xl text-[#2C4953]"></i>
               </div>
               <div>
-                <h4 className="text-3xl font-semibold font-['Tangerine']">Email</h4>
+                <h4 className="text-3xl font-semibold font-['Cormorant_Garamond']">Email</h4>
                 <a
-                  href="mailto:support@apnawebx.com"
+                  href="mailto:aaxierodesignstudio@gmail.com"
                   className="text-gray-700 hover:text-[#6b8c9a] transition-colors font-[Vollkorn]"
                 >
-                  support@apnawebx.com
+                  aaxierodesignstudio@gmail.com
                 </a>
               </div>
             </div>
             </a>
 
-            <a href="/" target="_blank" >
+            <a href="https://maps.app.goo.gl/XqGaVmG2LRR9EnAF9" target="_blank" rel="noreferrer">
               <div className="flex items-center gap-4">
                 <div className="p-4 bg-[#2C4953]/10 rounded-full">
                   {/* <FaLocationDot className="text-2xl text-[#2C4953]" /> */}
                   <i className="fa-solid fa-location-dot text-2xl text-[#2C4953]"></i>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-semibold font-['Tangerine']">Studio</h4>
+                  <h4 className="text-3xl font-semibold font-['Cormorant_Garamond']">Studio</h4>
                   <p className="text-gray-700 font-[Vollkorn]">
-                    Nikol, Ahmedabad, Gujarat, India
+                   407, Sankalp Icon, Opp. Parikh Hospital, Nikol, Ahmedabad, 382350.
                   </p>
                 </div>
               </div>
             </a>
 
-           
+
           </motion.div>
 
 
@@ -162,7 +162,8 @@ const Contact = () => {
               ></textarea>
               <button
                 type="submit"
-                className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Tangerine'] text-3xl"
+                className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Cormorant_Garamond']
+ text-3xl"
               >
                 Send Message
               </button>
@@ -176,7 +177,7 @@ const Contact = () => {
     <CostCalculator />
 
 
-     <section className="py-12 bg-[#f7f9f9]">
+    <section className="py-12 bg-[#f7f9f9]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <h2 className="text-3xl md:text-4xl font-[Vollkorn] text-[#2C4953] font-bold mb-6 text-center">
           Find Us On Map

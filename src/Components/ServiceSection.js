@@ -40,7 +40,8 @@ export default function Gallery() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl md:text-6xl font-['Tangerine'] text-[#2C4953] font-bold mb-6"
+          className="text-5xl md:text-6xl font-['Cormorant_Garamond']
+ text-[#2C4953] font-bold mb-6"
         >
           Our <span className="text-[#6b8c9a] ">Gallery</span>
         </motion.h2>

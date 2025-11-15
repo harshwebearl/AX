@@ -6,6 +6,20 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";    // Disable scroll
+
+    } else {
+      document.body.style.overflow = "auto";      // Enable scroll
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";      // Cleanup when unmount
+    };
+  }, [menuOpen]);
+
+
   // Get current route from React Router
   const location = useLocation();
 
@@ -33,17 +47,17 @@ export default function Navbar() {
 
       <div className="relative z-10 max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:py-6 md:px-6">
         {/* Left Menu */}
-        <ul className="hidden md:flex space-x-8 text-[#2C4953] font-medium tracking-wide">
+        <ul className="hidden md:flex space-x-8 font-medium tracking-wide">
           {menuItemsLeft.map((item) => (
             <li key={item.id} className="relative group">
               <Link
                 to={item.path}
                 onClick={() => setActive(item.id)}
-                className={`transition-all duration-300 text-3xl font-bold font-['Tangerine'] ${
-                  active === item.id
+                className={`transition-all duration-300 text-2xl font-bold font-['Cormorant_Garamond']
+ ${active === item.id
                     ? "text-[#2C4953]"
                     : "text-gray-500 hover:text-[#2C4953]"
-                }`}
+                  }`}
               >
                 {item.name}
               </Link>
@@ -72,11 +86,11 @@ export default function Navbar() {
               <Link
                 to={item.path}
                 onClick={() => setActive(item.id)}
-                className={`transition-all duration-300 text-3xl font-bold font-['Tangerine'] ${
-                  active === item.id
+                className={`transition-all duration-300 text-2xl font-bold font-['Cormorant_Garamond']
+ ${active === item.id
                     ? "text-[#2C4953]"
                     : "text-gray-500 hover:text-[#2C4953]"
-                }`}
+                  }`}
               >
                 {item.name}
               </Link>
@@ -87,7 +101,7 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="https://www.apnawebx.com"
+              href="https://maps.app.goo.gl/XqGaVmG2LRR9EnAF9"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#2C4953] hover:text-gray-600 transition-colors"
@@ -106,15 +120,19 @@ export default function Navbar() {
         </button>
         <button
           className="md:hidden text-[#2C4953] text-2xl"
-          // onClick={() => setMenuOpen(!menuOpen)}
+        // onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <a href="tel:+919998488480" > <i className="fa-solid fa-phone"></i></a> : <a href="tel:+919998488480" > <i className="fa-solid fa-phone"></i></a>} 
+          {menuOpen ? <a href="tel:+91 84604 31159" > <i className="fa-solid fa-phone"></i></a> : <a href="tel:+91 84604 31159" > <i className="fa-solid fa-phone"></i></a>}
         </button>
       </div>
 
+
+
+
       {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden shadow-lg border-t border-gray-200">
+      {menuOpen && (<>
+      
+        <div className="md:hidden shadow-lg border-t border-gray-200 pb-10 h-[650px] ">
           <ul className="relative z-10 flex flex-col items-center py-4 space-y-4 text-[#2C4953] font-medium">
             {[...menuItemsLeft, ...menuItemsRight].map((item) => (
               <li key={item.id}>
@@ -124,11 +142,11 @@ export default function Navbar() {
                     setActive(item.id);
                     setMenuOpen(false);
                   }}
-                  className={`transition-all duration-300 text-3xl font-['Tangerine'] ${
-                    active === item.id
+                  className={`transition-all duration-300 text-2xl font-['Cormorant_Garamond']
+ ${active === item.id
                       ? "text-[#253f47] font-black underline underline-offset-6"
                       : "hover:text-[#2C4953]"
-                  }`}
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -137,21 +155,28 @@ export default function Navbar() {
           </ul>
 
           {/* Mobile Contact Info */}
-          <div className="flex flex-col justify-center items-center gap-4 relative z-10 pb-4 font-['Tangerine'] pt-5 border-t border-gray-200">
+          <div className="flex flex-col justify-center items-center gap-4 relative z-10 pb-4 font-['Cormorant_Garamond']
+ pt-5 border-t border-gray-200">
             <a
-              href="tel:+919998488480"
+              href="tel:+91 84604 31159"
               className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
             >
-              <i className="fa-solid fa-phone"></i> +91 99984 88480
+              <i className="fa-solid fa-phone"></i> +91 84604 31159
             </a>
             <a
-              href="mailto:support@apnawebx.com"
+              href="tel:+91 81416 72731"
               className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
             >
-              <i className="fa-solid fa-envelope"></i> support@apnawebx.com
+              <i className="fa-solid fa-phone"></i> +91 81416 72731
             </a>
             <a
-              href="https://www.apnawebx.com"
+              href="mailto:aaxierodesignstudio@gmail.com"
+              className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
+            >
+              <i className="fa-solid fa-envelope"></i> aaxierodesignstudio@gmail.com
+            </a>
+            <a
+              href="https://maps.app.goo.gl/XqGaVmG2LRR9EnAF9"
               className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
             >
               <i className="fa-solid fa-location-dot"></i> Nikol, Ahmedabad
@@ -173,6 +198,8 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+      </>
+
       )}
     </nav>
   );
