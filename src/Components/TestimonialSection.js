@@ -8,15 +8,15 @@ import "swiper/css/pagination";
 export default function TestimonialsSection() {
     const testimonials = [
         {
-            name: "Rohit Patel",
+            name: "Suhag Patel",
             text: "AAxiero Design Studio completely transformed our home. Their attention to detail, creativity, and professionalism exceeded all expectations.",
         },
         {
-            name: "Kavya Shah",
+            name: "Viraj Faldu",
             text: "Elegant, functional, and beautifully executed. The design captured our brand perfectly. Highly recommended for premium interior projects.",
         },
         {
-            name: "Harshil Mehta",
+            name: "Mirat Hirani",
             text: "Their design philosophy brings life to spaces. Every corner feels intentional and thoughtfully crafted. Great experience working with them.",
         },
     ];

@@ -25,7 +25,7 @@ const Footer = () => {
           </p>
            <div className="flex gap-6 mt-4">
               <a
-                href="/"
+                href="https://www.instagram.com/aaxiero_design_studio?igsh=bW1kMmxoMHV3MTB1"
                 target="_blank"
                 rel=" noreferrer"
                 className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
@@ -33,7 +33,7 @@ const Footer = () => {
                 <i className="fa-brands fa-instagram"></i>
               </a>
               <a
-                href="/"
+                href="https://www.facebook.com/profile.php?id=100064026998275"
                 target="_blank"
                 rel=" noreferrer"
                 className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
@@ -41,7 +41,7 @@ const Footer = () => {
                 <i className="fa-brands fa-facebook"></i>
               </a>
               <a
-                href="/"
+                href="https://wa.me/qr/F3GB4XA7NCW4C1"
                 target="_blank"
                 rel=" noreferrer"
                 className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
