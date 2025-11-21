@@ -5,7 +5,7 @@
   --accent-color: #ff6f61;
 }
 
-i{
+i, .icon{
   font-size: 20px;
   color: var(--primary-color);
   cursor: pointer;
@@ -16,7 +16,7 @@ i{
   width: 40px !important;
 }
 
-i:hover {
+i:hover , .icon:hover {
   color: #fff;
   background-color: var(--primary-color);
   transition: all 0.8s ease;

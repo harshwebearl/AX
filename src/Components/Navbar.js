@@ -33,21 +33,21 @@ export default function Navbar() {
     { name: "Home", id: "home", path: "/" },
     { name: "About", id: "about", path: "/about" },
     { name: "Gallery", id: "Gallery", path: "/Gallery" },
+    { name: "Projects", id: "projects", path: "/projects" },
   ];
   const menuItemsRight = [
     { name: "Services", id: "services", path: "/services" },
-    { name: "Projects", id: "projects", path: "/projects" },
     { name: "Contact", id: "contact", path: "/contact" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-[#d5dbdd] backdrop-blur-md shadow-sm z-50 bg-[url(/images/logo/nav-bg.jpg)] bg-cover bg-center border-b border-gray-200">
       {/* Overlay */}
-      <div className="absolute inset-0 bg-[#d5dbdd]/80"></div>
+      <div className="absolute inset-0 bg-[#d5dbdd]/90"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:py-6 md:px-6">
+      <div className="relative z-10 max-w-7xl mx-auto flex justify-between items-center px-4 py-4 md:py-6 md:px-6 h-[89px]">
         {/* Left Menu */}
-        <ul className="hidden md:flex space-x-8 font-medium tracking-wide">
+        <ul className="hidden lg:flex space-x-6 font-medium tracking-wide">
           {menuItemsLeft.map((item) => (
             <li key={item.id} className="relative group">
               <Link
@@ -69,18 +69,18 @@ export default function Navbar() {
         </ul>
 
         {/* Center Logo */}
-        <div className="flex items-center absolute left-1/2 -translate-x-1/2 gap-2">
-          <img src="/images/logo/aaxiero-logo.png" alt="AAxiero Logo" className="h-14" />
+        <div className="flex items-center absolute left-1/2 -translate-x-1/2 sm:gap-2 gap-1 cursor-pointer">
+          <img src="/images/logo/aaxiero-logo.png" alt="AAxiero Logo" className="sm:h-14 h-12 " />
           <div className="flex flex-col items-center">
-            <h1 className="text-3xl font-bold tracking-wide text-[#2C4953] mt-1">
+            <h1 className="sm:text-3xl text-2xl font-bold tracking-wide text-[#2C4953] mt-1">
               AAxiero
             </h1>
-            <h3 className="text-lg md:text-xl text-[#2C4953] -mt-1">Design Studio</h3>
+            <h3 className="text-sm sm:text-lg md:text-xl text-[#2C4953] -mt-1">Design Studio</h3>
           </div>
         </div>
 
         {/* Right Menu */}
-        <ul className="hidden md:flex space-x-8 text-[#2C4953] font-medium tracking-wide ml-auto items-center">
+        <ul className="hidden lg:flex space-x-6 text-[#2C4953] font-medium tracking-wide ml-auto items-center">
           {menuItemsRight.map((item) => (
             <li key={item.id} className="relative group">
               <Link
@@ -99,7 +99,9 @@ export default function Navbar() {
               )}
             </li>
           ))}
-          <li>
+
+
+          {/* <li>
             <a
               href="https://maps.app.goo.gl/XqGaVmG2LRR9EnAF9"
               target="_blank"
@@ -108,22 +110,29 @@ export default function Navbar() {
             >
               <i className="fa-solid fa-location-dot text-xl"></i>
             </a>
-          </li>
+          </li> */}
         </ul>
 
         {/* Mobile Menu Button */}
+         <a
+              href="tel:+91 84604 31159"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#2C4953] hover:text-gray-600 transition-colors font-bold text-md sm:text-xl border-[#2C4953] rounded-md hover:bg-[#2C4953] hover:text-white text-center ml-2 sm:pb-2 pb-1 sm:px-2 px-[4px] p-1 border-2 "
+            >
+            Get <br className="sm:hidden block"  /> Quote </a>
         <button
-          className="md:hidden text-[#2C4953] text-2xl"
+          className="lg:hidden text-[#2C4953] text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
-        <button
-          className="md:hidden text-[#2C4953] text-2xl"
-        // onClick={() => setMenuOpen(!menuOpen)}
+       
+        {/* <button
+          className="lg:hidden text-[#2C4953] text-2xl"
         >
           {menuOpen ? <a href="tel:+91 84604 31159" > <i className="fa-solid fa-phone"></i></a> : <a href="tel:+91 84604 31159" > <i className="fa-solid fa-phone"></i></a>}
-        </button>
+        </button> */}
       </div>
 
 
@@ -132,7 +141,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (<>
       
-        <div className="md:hidden shadow-lg border-t border-gray-200 pb-10 h-[650px] ">
+        <div className="lg:hidden shadow-lg border-t border-gray-200 pb-10 h-[650px] ">
           <ul className="relative z-10 flex flex-col items-center py-4 space-y-4 text-[#2C4953] font-medium">
             {[...menuItemsLeft, ...menuItemsRight].map((item) => (
               <li key={item.id}>
