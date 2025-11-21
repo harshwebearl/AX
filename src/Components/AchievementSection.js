@@ -14,7 +14,7 @@ export default function StudioStatsSection() {
     {
       icon: <FaUsers className="text-4xl text-[#6b8c9a]" />,
       title: "Happy Clients",
-      value: 85,
+      value: 110,
       suffix: "+",
     },
     {

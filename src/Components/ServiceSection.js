@@ -21,8 +21,8 @@ export default function Gallery() {
     },
     {
       icon: <FaTree className="text-4xl text-[#2C4953]" />,
-      title: "Landscape Design",
-      desc: "We integrate architecture with nature, designing serene outdoor spaces that complement the built environment perfectly.",
+      title: "Turnkey Solutions",
+      desc: "End-to-end turnkey solutions delivering seamless planning, design, execution, and delivery with unmatched quality and reliability.",
     },
   ];
 
@@ -43,7 +43,7 @@ export default function Gallery() {
           className="text-5xl md:text-6xl font-['Cormorant_Garamond']
  text-[#2C4953] font-bold mb-6"
         >
-          Our <span className="text-[#6b8c9a] ">Gallery</span>
+          Our <span className="text-[#6b8c9a] ">Services</span>
         </motion.h2>
 
         <motion.p

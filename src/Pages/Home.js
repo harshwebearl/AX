@@ -32,19 +32,18 @@ export default function Home() {
 
       <section className="relative h-[70vh] md:h-screen flex items-center justify-center overflow-hidden bg-[url(/images/project/6.jpg)] bg-cover bg-center">
         {/* Animated Background */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <motion.div
             key={images[index]}
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${images[index]})` }}
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            exit={{ scaleX: 0 }}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-99%" }}
             transition={{
-              duration: 1.9,
-              ease: [0.77, 0, 0.175, 1], // smooth "spread" feel
+              duration: 1.5,
+              ease: "easeInOut",
             }}
-            transformOrigin="center"
           />
         </AnimatePresence>
 
@@ -90,7 +89,7 @@ export default function Home() {
       <AchievementSection />
       <CostCalculator />
 
-      
+
 
 
       <section className="relative bg-[#f7f9f9] overflow-hidden pb-20 pt-20">
@@ -128,36 +127,36 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="flex flex-col gap-8 text-[#2C4953]"
             >
-              <a href="tel:+91 99984 88480" > <div className="flex items-center gap-4">
+              <a href="tel:+91 84604 31159" > <div className="flex items-center gap-4">
                 <div className="p-4 bg-[#2C4953]/10 rounded-full">
                   {/* <FaPhoneAlt className="text-2xl text-[#2C4953]" /> */}
                   <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
                 </div>
                 <div>
                   <h4 className="text-3xl font-bold font-['Cormorant_Garamond']
- ">Phone</h4>
+ ">Jainish Faldu</h4>
                   <a
-                    href="tel:+91 99984 88480"
+                    href="tel:+91 84604 31159"
                     className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
                   >
-                    +91 99984 88480
+                    +91 84604 31159
                   </a>
                 </div>
               </div></a>
-              
-              <a href="tel:+91 99984 88480" > <div className="flex items-center gap-4">
+
+              <a href="tel:+91 81416 72731" > <div className="flex items-center gap-4">
                 <div className="p-4 bg-[#2C4953]/10 rounded-full">
                   {/* <FaPhoneAlt className="text-2xl text-[#2C4953]" /> */}
                   <i className="fa-solid fa-phone-alt text-2xl text-[#2C4953]"></i>
                 </div>
                 <div>
                   <h4 className="text-3xl font-bold font-['Cormorant_Garamond']
- ">Phone</h4>
+ ">Apoorva Patel</h4>
                   <a
-                    href="tel:+91 99984 88480"
+                    href="tel:+91 81416 72731"
                     className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
                   >
-                    +91 99984 88480
+                    +91 81416 72731
                   </a>
                 </div>
               </div></a>
@@ -210,54 +209,54 @@ export default function Home() {
 
 
             <div className="relative bg-[url(/images/logo/contact-bg.jpg)] bg-cover bg-center rounded-2xl">
-            {/* Right: Contact Form */}
-            <div className="absolute inset-0 bg-[#d5dbdd]/80 rounded-2xl"></div>
-            <motion.form
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              onSubmit={(e) => e.preventDefault()}
-              className="relative z-10 bg-transparent shadow-lg rounded-2xl p-8 border border-gray-200 "
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
-                />
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-                <input
-                  type="text"
-                  placeholder="Your Phone"
-                  className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
-                />
-                <input
-                  type="text"
-                  placeholder="Subject"
-                  className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
-                />
-
-              </div>
-
-              <textarea
-                placeholder="Your Message"
-                rows="5"
-                className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
-              ></textarea>
-              <button
-                type="submit"
-                className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Cormorant_Garamond']
- text-3xl"
+              {/* Right: Contact Form */}
+              <div className="absolute inset-0 bg-[#d5dbdd]/80 rounded-2xl"></div>
+              <motion.form
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                onSubmit={(e) => e.preventDefault()}
+                className="relative z-10 bg-transparent shadow-lg rounded-2xl p-8 border border-gray-200 "
               >
-                Send Message
-              </button>
-            </motion.form>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                  />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                  <input
+                    type="text"
+                    placeholder="Your Phone"
+                    className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Subject"
+                    className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                  />
+
+                </div>
+
+                <textarea
+                  placeholder="Your Message"
+                  rows="5"
+                  className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                ></textarea>
+                <button
+                  type="submit"
+                  className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Cormorant_Garamond']
+ text-3xl"
+                >
+                  Send Message
+                </button>
+              </motion.form>
             </div>
           </div>
         </div>

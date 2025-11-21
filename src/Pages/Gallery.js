@@ -3,17 +3,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
 
 const Gallery = () => {
-   const filters = ["All", "Interior", "Architecture", "Commercial", "Landscape"];
+   const filters = ["All", "Interior", "Architecture", "Commercial", "Turnkey"];
 
   const images = [
     { src: "/images/project/1.jpg", category: "Interior" },
     { src: "/images/project/2.jpg", category: "Interior" },
     { src: "/images/project/3.jpg", category: "Architecture" },
     { src: "/images/project/4.jpg", category: "Commercial" },
-    { src: "/images/project/5.jpg", category: "Landscape" },
+    { src: "/images/project/5.jpg", category: "Turnkey" },
     { src: "/images/project/6.jpg", category: "Architecture" },
     { src: "/images/project/7.jpg", category: "Commercial" },
-    { src: "/images/project/8.jpg", category: "Landscape" },
+    { src: "/images/project/8.jpg", category: "Turnkey" },
   ];
 
   const [activeFilter, setActiveFilter] = useState("All");

@@ -1,63 +1,53 @@
- {/* --- Image Previews --- */}
-        {/* Top Left */}
-        <div className="absolute top-20 left-10 flex flex-col gap-6 z-10">
-          {[images[0]].map((img, i) => (
-            <div
-              key={i}
-              className={`relative w-24 h-24 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-500  ${currentBg === img ? "border-white scale-110" : "border-transparent hover:scale-105"
-                }`}
-              onClick={() => setCurrentBg(img)}
-              style={{
-                clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
-              }}
-            >
-              <img src={img} alt={`Preview ${i}`} className="w-full h-full object-cover shadow-2xl " />
-              {currentBg === img && <div className="absolute inset-0 bg-white/10 "></div>}
-            </div>
-          ))}
-        </div>
+ <section className="relative h-[70vh] md:h-screen flex items-center justify-center overflow-hidden bg-[url(/images/project/6.jpg)] bg-cover bg-center">
+        {/* Animated Background */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={images[index]}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${images[index]})` }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            exit={{ scaleX: 0 }}
+            transition={{
+              duration: 1.9,
+              ease: [0.77, 0, 0.175, 1], // smooth "spread" feel
+            }}
+            transformOrigin="center"
+          />
+        </AnimatePresence>
 
-        {/* Top Right */}
-        <div className="absolute top-20 right-10 flex flex-col gap-6 z-10">
-          {[images[1]].map((img, i) => (
-            <div
-              key={i}
-              className={`relative w-24 h-24 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-500 ${currentBg === img ? "border-white scale-110" : "border-transparent hover:scale-105"
-                }`}
-              onClick={() => setCurrentBg(img)}
-            >
-              <img src={img} alt={`Preview ${i}`} className="w-full h-full object-cover" />
-              {currentBg === img && <div className="absolute inset-0 bg-white/10 "></div>}
-            </div>
-          ))}
-        </div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
 
-        {/* Bottom Right */}
-        <div className="absolute bottom-20 left-10 flex flex-col gap-6 z-10">
-          {[images[2]].map((img, i) => (
-            <div
-              key={i + 2}
-              className={`relative w-24 h-24 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-500 ${currentBg === img ? "border-white scale-110" : "border-transparent hover:scale-105"
-                }`}
-              onClick={() => setCurrentBg(img)}
-            >
-              <img src={img} alt={`Preview ${i + 2}`} className="w-full h-full object-cover" />
-              {currentBg === img && <div className="absolute inset-0 bg-white/10 "></div>}
-            </div>
-          ))}
-        </div>
+        {/* Content */}
+        <div className="relative z-10 text-center text-white px-4">
+          <motion.h1
+            key={index + "-heading"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-4xl md:text-7xl font-bold font-[Vollkorn] tracking-wide drop-shadow-md"
+          >
+            Building Dreams, <br /> Designing Reality
+          </motion.h1>
+          <motion.p
+            key={index + "-para"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2 }}
+            className="mt-6 text-lg md:text-xl max-w-2xl mx-auto font-light tracking-wide"
+          >
+            We design refined spaces with precision and creativity, blending function and form to create elegant, innovative environments.
+          </motion.p>
 
-        {/* Bottom Right */}
-        <div className="absolute bottom-20 right-10 flex flex-col gap-6 z-10">
-          {[images[3]].map((img, i) => (
-            <div
-              key={i + 2}
-              className={`relative w-24 h-24 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-500 ${currentBg === img ? "border-white scale-110" : "border-transparent hover:scale-105"
-                }`}
-              onClick={() => setCurrentBg(img)}
-            >
-              <img src={img} alt={`Preview ${i + 2}`} className="w-full h-full object-cover" />
-              {currentBg === img && <div className="absolute inset-0 bg-white/10 "></div>}
-            </div>
-          ))}
+          <Link
+            to="/projects"
+            className="inline-block bg-white text-[#2C4953] mt-10 px-8 py-3 rounded-full font-semibold tracking-wider uppercase hover:bg-[#2C4953] hover:text-white transition duration-300"
+          >
+            Explore Projects
+          </Link>
+
         </div>
+        {/* Decorative Line */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-24 h-[1px] bg-white opacity-50"></div>
+      </section>

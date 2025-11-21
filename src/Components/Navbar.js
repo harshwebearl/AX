@@ -62,7 +62,7 @@ export default function Navbar() {
                 {item.name}
               </Link>
               {active === item.id && (
-                <span className="absolute left-0 right-0 top-1/2 h-[1px] bg-[#2C4953] rotate-12 origin-center scale-x-100 transition-all duration-300"></span>
+                <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-[#2C4953] origin-center scale-x-100 transition-all duration-300"></span>
               )}
             </li>
           ))}
@@ -95,7 +95,7 @@ export default function Navbar() {
                 {item.name}
               </Link>
               {active === item.id && (
-                <span className="absolute left-0 right-0 top-1/2 h-[1px] bg-[#2C4953] rotate-12 origin-center scale-x-100 transition-all duration-300"></span>
+                <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-[#2C4953] origin-center scale-x-100 transition-all duration-300"></span>
               )}
             </li>
           ))}

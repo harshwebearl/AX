@@ -21,9 +21,35 @@ const Footer = () => {
             </div>
           </div>
           <p className="text-lg mt-4 text-gray-700 leading-relaxed max-w-sm font-[Vollkorn]">
-            We create timeless and elegant spaces that reflect your personality and lifestyle.
             Our designs combine creativity, craftsmanship, and comfort for an elevated experience.
           </p>
+           <div className="flex gap-6 mt-4">
+              <a
+                href="/"
+                target="_blank"
+                rel=" noreferrer"
+                className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
+              >
+                <i className="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="/"
+                target="_blank"
+                rel=" noreferrer"
+                className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
+              >
+                <i className="fa-brands fa-facebook"></i>
+              </a>
+              <a
+                href="/"
+                target="_blank"
+                rel=" noreferrer"
+                className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
+              >
+                <i className="fa-brands fa-whatsapp"></i>
+              </a>
+             
+            </div>
         </div>
 
         {/* Quick Links */}
@@ -72,6 +98,14 @@ const Footer = () => {
               <i className="fa-solid fa-phone"></i> +91 84604 31159
             </a>
             <a
+              href="tel:91 84604 31159"
+              target="_blank"
+              rel=" noreferrer"
+              className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
+            >
+              <i className="fa-solid fa-phone"></i> +91 81426 72731
+            </a>
+            <a
               href="mailto:aaxierodesignstudio@gmail.com"
               target="_blank"
               rel=" noreferrer"
@@ -88,40 +122,7 @@ const Footer = () => {
               <i className="fa-solid fa-location-dot"></i> Nikol, Ahmedabad
             </a>
 
-            <div className="flex gap-6">
-              <a
-                href="/"
-                target="_blank"
-                rel=" noreferrer"
-                className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
-              >
-                <i className="fa-brands fa-instagram"></i>
-              </a>
-              <a
-                href="/"
-                target="_blank"
-                rel=" noreferrer"
-                className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
-              >
-                <i className="fa-brands fa-facebook"></i>
-              </a>
-              <a
-                href="/"
-                target="_blank"
-                rel=" noreferrer"
-                className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
-              >
-                <i className="fa-brands fa-whatsapp"></i>
-              </a>
-              <a
-                href="/"
-                target="_blank"
-                rel=" noreferrer"
-                className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
-              >
-                <i className="fa-brands fa-twitter"></i>
-              </a>
-            </div>
+           
           </div>
         </div>
       </div>
