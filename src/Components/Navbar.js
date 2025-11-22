@@ -179,31 +179,34 @@ export default function Navbar() {
               <i className="fa-solid fa-phone"></i> +91 81416 72731
             </a>
             <a
-              href="mailto:aaxierodesignstudio@gmail.com"
+              href="mailto:aaxierodesignstudio@gmail.com" target="_blank"
+                rel=" noreferrer"
               className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
             >
               <i className="fa-solid fa-envelope"></i> aaxierodesignstudio@gmail.com
             </a>
             <a
-              href="https://maps.app.goo.gl/XqGaVmG2LRR9EnAF9"
+              href="https://maps.app.goo.gl/XqGaVmG2LRR9EnAF9" target="_blank"
+                rel=" noreferrer"
               className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
             >
               <i className="fa-solid fa-location-dot"></i> Nikol, Ahmedabad
             </a>
 
             <div className="flex gap-6">
-              <a href="/" className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl">
+              <a href="https://www.instagram.com/aaxiero_design_studio?igsh=bW1kMmxoMHV3MTB1" target="_blank"
+                rel=" noreferrer" className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl">
                 <i className="fa-brands fa-instagram"></i>
               </a>
-              <a href="/" className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl">
+              <a href="https://www.facebook.com/profile.php?id=100064026998275" target="_blank"
+                rel=" noreferrer" className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl">
                 <i className="fa-brands fa-facebook"></i>
               </a>
-              <a href="/" className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl">
+              <a href="https://wa.me/qr/F3GB4XA7NCW4C1" target="_blank"
+                rel=" noreferrer" className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl">
                 <i className="fa-brands fa-whatsapp"></i>
               </a>
-              <a href="/" className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl">
-                <i className="fa-brands fa-twitter"></i>
-              </a>
+              
             </div>
           </div>
         </div>
