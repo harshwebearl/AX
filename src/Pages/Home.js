@@ -59,7 +59,7 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="text-4xl md:text-7xl font-bold font-[Vollkorn] tracking-wide drop-shadow-md"
           >
-            Your Dream, <br /> We Design
+            You Dream, <br /> We Design
           </motion.h1>
           <motion.p
             key={index + "-para"}
