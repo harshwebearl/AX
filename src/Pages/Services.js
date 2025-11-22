@@ -31,9 +31,9 @@ export default function Services() {
       desc: "Smart and precise architectural layout planning for optimized usable space.",
     },
     {
-      title: "Concept Development",
+      title: "Turnkey Solutions",
       icon: <FaDraftingCompass />,
-      desc: "Creative concept sketches and mood boards to define your project's design direction.",
+      desc: "End-to-end turnkey solutions delivering seamless planning, design, execution, and delivery with unmatched quality and reliability.",
     },
   ];
 

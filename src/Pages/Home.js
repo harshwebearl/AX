@@ -11,10 +11,10 @@ import CostCalculator from "../Components/CostCalculator";
 export default function Home() {
 
   const images = [
-    "/images/project/1.jpg",
-    "/images/project/2.jpg",
-    "/images/project/3.jpg",
-    "/images/project/4.jpg",
+    "/images/home/carousel1.jpeg",
+    "/images/home/carousel2.jpeg",
+    "/images/home/carousel3.jpeg",
+    "/images/home/carousel4.jpeg",
   ];
 
   const [index, setIndex] = useState(0);
