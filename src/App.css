@@ -22,6 +22,16 @@ i:hover , .icon:hover {
   transition: all 0.8s ease;
 }
 
+.icon-admin{
+   font-size: 18px;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 7px;
+  border: none;
+  width: 40px !important;
+}
+
 
 
 
