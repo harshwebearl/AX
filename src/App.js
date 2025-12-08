@@ -21,6 +21,9 @@ import ManageImages from './admin/projects/ManageImages';
 import AddSubCategory from './admin/projects/AddSubCategory';
 import EditSubCategory from './admin/projects/EditSubCategory';
 import GalleryImages from './admin/gallery/GalleryImages';
+import ServiceList from './admin/services/ServiceList';
+import AddService from './admin/services/AddService';
+import EditService from './admin/services/EditService';
 
 
 function App() {
@@ -29,37 +32,42 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />   // FIXED
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/services" element={<Services />} />
-        <Route path="*" element={<Home />} />
 
+        <Route path="/login" element={<Login />} />
 
-        <Route path="login" element={<Login />} />
         <Route path="/admin" element={<AdminLayout />}>
 
-          {/* DEFAULT ADMIN PAGE */}
           <Route index element={<AdminDashboard />} />
 
-
-          {/* PRODUCT ROUTES */}
-          <Route path="ProjectList" element={<ProjectList />} />
+          {/* PROJECT ROUTES */}
+          <Route path="projectlist" element={<ProjectList />} />
           <Route path="manage-images/:id" element={<ManageImages />} />
           <Route path="add-subcategory" element={<AddSubCategory />} />
           <Route path="edit-subcategory/:id" element={<EditSubCategory />} />
 
+          {/* GALLERY ROUTES */}
           <Route path="gallerylist" element={<GalleryList />} />
-          <Route path="/admin/gallery/:categoryId" element={<GalleryImages />} />
+          <Route path="gallery/:categoryId" element={<GalleryImages />} />
           <Route path="add-gallery" element={<AddGallery />} />
           <Route path="edit-gallery/:id" element={<EditGallery />} />
+
+          {/* SERVICE ROUTES */}
+          <Route path="servicelist" element={<ServiceList />} />
+          <Route path="add-service" element={<AddService />} />
+          <Route path="edit-service/:id" element={<EditService />} />
 
         </Route>
 
 
+        <Route path="*" element={<Home />} />
       </Routes>
+
       <Footer />
     </>
   );

@@ -1,3 +1,4 @@
+import { FaDraftingCompass } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
@@ -36,6 +37,10 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
 
           <NavLink to="/admin/ProjectList" className={linkClass}>
             <i className="fa-solid fa-box mr-2"></i> Projects
+          </NavLink>
+
+          <NavLink to="/admin/servicelist" className={linkClass}>
+           <i className="mr-2"> <FaDraftingCompass /></i> Services
           </NavLink>
 
           <NavLink to="/admin/gallerylist" className={linkClass}>
