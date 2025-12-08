@@ -70,7 +70,7 @@ const Gallery = () => {
               >
                 <img
                   src={img.src}
-                  alt="gallery"
+                  alt="AAxiero Design Studio"
                   className="w-full h-64 object-cover group-hover:scale-110 transition-all duration-700"
                 />
               </motion.div>

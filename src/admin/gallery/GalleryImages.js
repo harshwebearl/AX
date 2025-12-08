@@ -77,7 +77,7 @@ export default function GalleryImages() {
           >
             <img
               src={img}
-              alt="Gallery"
+              alt="AAxiero Design Studio"
               className="w-full h-40 object-cover"
             />
 

@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="flex items-center gap-2 mb-4">
             <img
               src="/images/logo/aaxiero-logo.png"
-              alt="AAxiero Logo"
+              alt="AAxiero Design Studio"
               className="h-20"
             />
             <div>
@@ -131,10 +131,10 @@ const Footer = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 ">
         {/* 4 images */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <img src="/images/project/2.jpg" alt="work 1" className="rounded-lg object-cover h-32 w-full" />
-          <img src="/images/project/4.jpg" alt="work 2" className="rounded-lg object-cover h-32 w-full" />
-          <img src="/images/project/6.jpg" alt="work 3" className="rounded-lg object-cover h-32 w-full" />
-          <img src="/images/project/8.jpg" alt="work 4" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/2.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/4.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/6.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/8.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
         </div>
 
 

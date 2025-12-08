@@ -31,7 +31,7 @@ export default function AddGallery() {
           <img
             src={preview}
             className="w-full h-52 object-cover rounded-md mb-4"
-            alt="Preview"
+            alt="AAxiero Design Studio"
           />
         )}
 

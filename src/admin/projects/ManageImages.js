@@ -55,7 +55,7 @@ export default function ManageImages() {
       >
         <img
           src={img}
-          alt="project"
+         alt="AAxiero Design Studio"
           className="w-full h-32 sm:h-36 md:h-40 object-cover"
         />
 

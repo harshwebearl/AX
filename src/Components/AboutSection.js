@@ -15,7 +15,7 @@ const AboutSection = () => {
             >
               <img
                 src="/images/project/8.jpg"
-                alt="Architecture Studio"
+               alt="AAxiero Design Studio"
                 className="rounded-2xl shadow-2xl w-full md:h-[500px] h-[300px] sm:h-[400px] object-cover"
               />
               <div className="absolute -bottom-8 md:-right-8 bg-white shadow-xl p-3 md:p-6 rounded-xl">

@@ -38,7 +38,7 @@ export default function Login() {
 
           {/* Logo */}
           <div className="relative z-10 flex items-center justify-center sm:gap-2 gap-1 cursor-pointer">
-            <img src="/images/logo/aaxiero-logo.png" alt="AAxiero Logo" className="sm:h-14 h-12 " />
+            <img src="/images/logo/aaxiero-logo.png" alt="AAxiero Design Studio" className="sm:h-14 h-12 " />
             <div className="flex flex-col items-center">
               <h1 className="sm:text-3xl text-2xl font-bold tracking-wide text-[#2C4953] mt-1">
                 AAxiero

@@ -65,7 +65,7 @@ const About = () => {
           >
             <img
               src="/images/project/12.jpg"
-              alt="Architectural Design Philosophy"
+             alt="AAxiero Design Studio"
               className="w-full h-[350px] md:h-[500px] object-cover rounded-2xl shadow-2xl"
             />
             <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-[#6b8c9a]/20 rounded-full blur-2xl"></div>
@@ -90,7 +90,7 @@ const About = () => {
         >
           <img
             src="/images/project/11.jpg"
-            alt="Architecture Studio"
+            alt="AAxiero Design Studio"
             className="rounded-2xl shadow-2xl w-full md:h-[500px] h-[300px] sm:h-[400px] object-cover"
           />
           <div className="absolute -bottom-8 md:-right-8 bg-white shadow-xl p-3 md:p-6 rounded-xl">

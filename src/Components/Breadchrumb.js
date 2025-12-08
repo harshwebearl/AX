@@ -18,7 +18,7 @@ export default function Breadcrumb() {
       {/* Background Image */}
       <img
         src="/images/logo/breadchrumb-bg.jpg"
-        alt="Architect Portrait"
+        alt="AAxiero Design Studio"
         className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
       />
 
