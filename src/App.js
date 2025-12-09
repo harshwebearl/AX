@@ -13,6 +13,7 @@ import Services from './Pages/Services';
 import AdminDashboard from './admin/AdminDashboard';
 import ProjectList from './admin/projects/ProjectList';
 import AdminLayout from './admin/AdminLayout';
+import RequireAuth from './admin/RequireAuth';
 import GalleryList from './admin/gallery/GalleryList';
 import AddGallery from './admin/gallery/AddGallery';
 import EditGallery from './admin/gallery/EditGallery';
@@ -24,6 +25,10 @@ import GalleryImages from './admin/gallery/GalleryImages';
 import ServiceList from './admin/services/ServiceList';
 import AddService from './admin/services/AddService';
 import EditService from './admin/services/EditService';
+// import CategoriesList from './admin/categories/CategoriesList';
+// import Addcategories from './admin/categories/Addcategories';
+// import Editcategories from './admin/categories/Editcategories';
+
 
 
 function App() {
@@ -41,7 +46,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
 
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin" element={<RequireAuth><AdminLayout /></RequireAuth>}>
 
           <Route index element={<AdminDashboard />} />
 
@@ -61,6 +66,11 @@ function App() {
           <Route path="servicelist" element={<ServiceList />} />
           <Route path="add-service" element={<AddService />} />
           <Route path="edit-service/:id" element={<EditService />} />
+
+          {/* CATEGORIES ROUTES */}
+          {/* <Route path="categories" element={<CategoriesList />} />
+          <Route path="add-categories" element={<Addcategories />} />
+          <Route path="edit-categories/:id" element={<Editcategories />} /> */}
 
         </Route>
 

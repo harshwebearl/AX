@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASEURL } from "../BASEURL";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -9,18 +10,47 @@ export default function Login() {
     password: "",
   });
 
+  const [snack, setSnack] = useState({ msg: "", show: false, type: "error" });
+
+  const showSnack = (msg, type = "error", duration = 3000) => {
+    setSnack({ msg, show: true, type });
+    setTimeout(() => setSnack((s) => ({ ...s, show: false })), duration);
+  };
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // FRONTEND ONLY (No backend validation)
-    // Backend developer will replace this with real API
-    if (form.email && form.password) {
-      localStorage.setItem("admin-auth", "true");
-      navigate("/admin");
+    if (!form.email || !form.password) {
+      showSnack("Please enter both email and password.");
+      return;
+    }
+
+    try {
+      const res = await fetch(`${BASEURL}/admin/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email, password: form.password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // Save auth state and token/admin info
+        localStorage.setItem("admin-auth", "true");
+        if (data.token) localStorage.setItem("admin-token", data.token);
+        if (data.admin) localStorage.setItem("admin", JSON.stringify(data.admin));
+        navigate("/admin");
+      } else {
+        const msg = data.message || "Login failed. Check credentials.";
+        showSnack(msg);
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      showSnack("An error occurred while logging in. Please try again.");
     }
   };
 
@@ -97,6 +127,21 @@ export default function Login() {
               Login
             </button>
           </form>
+          {/* Snackbar */}
+          <div
+            aria-live="polite"
+            className={`fixed bottom-6 left-1/2 z-50 transform -translate-x-1/2 transition-all duration-300 ${
+              snack.show ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 pointer-events-none"
+            }`}
+          >
+            <div
+              className={`max-w-md w-full px-4 py-2 rounded shadow-lg text-sm font-medium flex items-end gap-3 ${
+                snack.type === "error" ? "bg-red-600 text-white" : "bg-green-600 text-white"
+              }`}
+            >
+              <span>{snack.msg}</span>
+            </div>
+          </div>
         </div>
 
       </div>

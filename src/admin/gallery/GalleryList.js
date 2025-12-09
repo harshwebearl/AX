@@ -32,8 +32,8 @@ export default function GalleryList() {
 
       {/* PAGE TITLE */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-['Vollkorn'] font-bold text-[#2C4953]">
-          Gallery Categories
+        <h1 className="text-4xl font-['Vollkorn'] font-bold text-[#2C4953]">
+          Gallery
         </h1>
       </div>
 

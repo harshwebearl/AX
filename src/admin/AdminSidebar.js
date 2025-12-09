@@ -1,7 +1,20 @@
-import { FaDraftingCompass } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { FaDraftingCompass , FaLayerGroup    } from "react-icons/fa";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem("admin-auth");
+      localStorage.removeItem("admin-token");
+      localStorage.removeItem("admin");
+    } catch (err) {
+      // ignore
+    }
+    if (typeof setSidebarOpen === "function") setSidebarOpen(false);
+    navigate("/login");
+  };
   const linkClass = ({ isActive }) =>
     `relative z-20 flex items-center px-3 py-2 rounded-md transition font-medium
      ${isActive ? "bg-[#2C4953]/20 text-[#2C4953]" : "text-[#2C4953] hover:bg-[#2C4953]/10 hover:text-brandOrange"}`;
@@ -43,11 +56,15 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
            <i className="mr-2"> <FaDraftingCompass /></i> Services
           </NavLink>
 
+          {/* <NavLink to="/admin/categories" className={linkClass}>
+           <i className="mr-2"> <FaLayerGroup    /></i> Categories
+          </NavLink> */}
+
           <NavLink to="/admin/gallerylist" className={linkClass}>
             <i className="fa-solid fa-image mr-2"></i> Gallery
           </NavLink>
 
-          <NavLink to="/login" className={linkClass}>
+          <NavLink to="/login" className={linkClass} onClick={handleLogout}>
             <i className="fa-solid fa-right-from-bracket mr-2"></i> Logout
           </NavLink>
         </nav>
