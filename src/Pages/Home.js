@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import AboutSection from "../Components/AboutSection";
 import ServiceSection from "../Components/ServiceSection";
 import AchievementSection from "../Components/AchievementSection";
@@ -29,33 +28,61 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  // Set metadata using React 19 Metadata API
+  useEffect(() => {
+    document.title = "AAxiero Design Studio - Premium Interior & Architectural Design";
+    
+    const setMetaTag = (name, value, property = false) => {
+      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+      let meta = document.querySelector(selector);
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (property) {
+          meta.setAttribute('property', name);
+        } else {
+          meta.setAttribute('name', name);
+        }
+        document.head.appendChild(meta);
+      }
+      
+      meta.setAttribute('content', value);
+    };
+
+    setMetaTag('description', 'Discover refined spaces designed with precision and creativity. Transform your vision into reality with AAxiero Design Studio. Expert interior design and architectural visualization.');
+    setMetaTag('keywords', 'AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior');
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/');
+
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:title', 'AAxiero Design Studio - Premium Interior & Architectural Design', true);
+    setMetaTag('og:description', 'Transform your vision into reality with expert interior design and architectural services', true);
+    setMetaTag('og:url', 'https://aax.kevalontechnology.in/', true);
+    setMetaTag('og:image', 'https://aax.kevalontechnology.in/images/og-image.jpg', true);
+
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'AAxiero Design Studio');
+    setMetaTag('twitter:description', 'Premium Interior & Architectural Design Services');
+    setMetaTag('twitter:image', 'https://aax.kevalontechnology.in/images/og-image.jpg');
+
+    let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="organization"]');
+    if (!schemaScript) {
+      schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      schemaScript.setAttribute('data-type', 'organization');
+      document.head.appendChild(schemaScript);
+    }
+    schemaScript.textContent = JSON.stringify(organizationSchema);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans pt-18 md:pt-22 ">
-      <Helmet>
-        <title>AAxiero Design Studio - Premium Interior & Architectural Design</title>
-        <meta name="description" content="Discover refined spaces designed with precision and creativity. Transform your vision into reality with AAxiero Design Studio. Expert interior design and architectural visualization." />
-          <meta name="keywords" content="AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior" />
-        <link rel="canonical" href="https://aax.kevalontechnology.in/" />
-        
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="AAxiero Design Studio - Premium Interior & Architectural Design" />
-        <meta property="og:description" content="Transform your vision into reality with expert interior design and architectural services" />
-        <meta property="og:url" content="https://aax.kevalontechnology.in/" />
-        <meta property="og:image" content="https://aax.kevalontechnology.in/images/og-image.jpg" />
-        
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AAxiero Design Studio" />
-        <meta name="twitter:description" content="Premium Interior & Architectural Design Services" />
-        <meta name="twitter:image" content="https://aax.kevalontechnology.in/images/og-image.jpg" />
-        
-        {/* Schema Markup */}
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-      </Helmet>
-
       <section className="relative h-[70vh] md:h-screen flex items-center justify-center overflow-hidden bg-[url(/images/project/6.jpg)] bg-cover bg-center">
         {/* Animated Background */}
         <AnimatePresence mode="popLayout">

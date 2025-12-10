@@ -1,5 +1,4 @@
-import React from 'react'
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react'
 import { motion } from "framer-motion";
 import AchievementSection from "../Components/AchievementSection";
 import Breadchrumb from "../Components/Breadchrumb";
@@ -7,36 +6,63 @@ import TestimonialsSection from '../Components/TestimonialSection';
 import { FaArrowRight } from 'react-icons/fa';
 
 const About = () => {
-  return (<>
-    <Helmet>
-      <title>About AAx Kevalon Technology - Our Design Philosophy</title>
-      <meta name="description" content="Learn about AAxiero Design Studio's philosophy, values, and approach to creating refined interior design and architectural spaces." />
-      <meta name="keywords" content="AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior" />
-      <link rel="canonical" href="https://aax.kevalontechnology.in/about" />
+  useEffect(() => {
+    document.title = "About AAx Kevalon Technology - Our Design Philosophy";
+    
+    const setMetaTag = (name, value, property = false) => {
+      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+      let meta = document.querySelector(selector);
       
-      {/* Open Graph */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="About AAxiero Design Studio - Our Design Philosophy" />
-      <meta property="og:description" content="Discover our design philosophy and approach to creating meaningful spaces" />
-      <meta property="og:url" content="https://aax.kevalontechnology.in/about" />
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (property) {
+          meta.setAttribute('property', name);
+        } else {
+          meta.setAttribute('name', name);
+        }
+        document.head.appendChild(meta);
+      }
       
-      {/* Schema - Organization Profile */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "AboutPage",
-          "mainEntity": {
-            "@type": "Organization",
-            "name": "AAxiero Design Studio",
-            "description": "Premium interior design and architectural visualization services with precision and innovation",
-            "url": "https://aax.kevalontechnology.in",
-            "knowsAbout": ["Interior Design", "Architecture", "Space Design", "Architectural Visualization"]
-          }
-        })}
-      </script>
-    </Helmet>
+      meta.setAttribute('content', value);
+    };
 
-    <Breadchrumb />
+    setMetaTag('description', 'Learn about AAxiero Design Studio\'s philosophy, values, and approach to creating refined interior design and architectural spaces.');
+    setMetaTag('keywords', 'AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior');
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/about');
+
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:title', 'About AAxiero Design Studio - Our Design Philosophy', true);
+    setMetaTag('og:description', 'Discover our design philosophy and approach to creating meaningful spaces', true);
+    setMetaTag('og:url', 'https://aax.kevalontechnology.in/about', true);
+
+    let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="about"]');
+    if (!schemaScript) {
+      schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      schemaScript.setAttribute('data-type', 'about');
+      document.head.appendChild(schemaScript);
+    }
+    schemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "AAxiero Design Studio",
+        "description": "Premium interior design and architectural visualization services with precision and innovation",
+        "url": "https://aax.kevalontechnology.in",
+        "knowsAbout": ["Interior Design", "Architecture", "Space Design", "Architectural Visualization"]
+      }
+    });
+  }, []);
+
+  return (<>
 
     <div className=' '>
       <section className="relative bg-[#ffffff] py-14 overflow-hidden">

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -126,18 +125,62 @@ const Projects = () => {
   // Get the active category object from the updated categories array
   const activeCategory = categories.find(cat => cat.name === activeCategoryName) || categories[0];
 
+  // Set metadata using React 19 Metadata API
+  useEffect(() => {
+    document.title = "Our Projects - AAxiero Design Studio Portfolio";
+    
+    const setMetaTag = (name, value, property = false) => {
+      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+      let meta = document.querySelector(selector);
+      
+      if (!meta) {
+        meta = document.createElement('meta');
+        if (property) {
+          meta.setAttribute('property', name);
+        } else {
+          meta.setAttribute('name', name);
+        }
+        document.head.appendChild(meta);
+      }
+      
+      meta.setAttribute('content', value);
+    };
 
+    setMetaTag('description', 'Explore our portfolio of residential, commercial, and architectural projects showcasing our design expertise and innovation.');
+    setMetaTag('keywords', 'interior design projects, portfolio, residential design, commercial design, architectural work, design showcase');
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/projects');
+
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:title', 'Our Projects - AAxiero Design Studio', true);
+    setMetaTag('og:description', 'Explore our portfolio of exceptional design projects', true);
+    setMetaTag('og:url', 'https://aax.kevalontechnology.in/projects', true);
+
+    let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="projects"]');
+    if (!schemaScript) {
+      schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      schemaScript.setAttribute('data-type', 'projects');
+      document.head.appendChild(schemaScript);
+    }
+    schemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Our Projects",
+      "description": "Portfolio of design projects"
+    });
+  }, []);
 
   // Prevent render errors while categories are loading
   if (!activeCategory || !categories || categories.length === 0) {
     return (
       <>
-        <Helmet>
-          <title>Our Projects - AAxiero Design Studio Portfolio</title>
-          <meta name="description" content="Explore our portfolio of residential, commercial, and architectural projects showcasing our design expertise and innovation." />
-          <meta name="keywords" content="AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior" />
-          <link rel="canonical" href="https://aax.kevalontechnology.in/projects" />
-        </Helmet>
         <Breadchrumb />
         <section className="py-20 bg-[#f7f9f9]">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -149,30 +192,6 @@ const Projects = () => {
   }
 
   return (<>
-    <Helmet>
-      <title>Our Projects - AAxiero Design Studio Portfolio</title>
-      <meta name="description" content="Explore our portfolio of residential, commercial, and architectural projects showcasing our design expertise and innovation." />
-      <meta name="keywords" content="interior design projects, portfolio, residential design, commercial design, architectural work, design showcase" />
-      <link rel="canonical" href="https://aax.kevalontechnology.in/projects" />
-      
-      {/* Open Graph */}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="Our Projects - AAxiero Design Studio" />
-      <meta property="og:description" content="Explore our portfolio of exceptional design projects" />
-      <meta property="og:url" content="https://aax.kevalontechnology.in/projects" />
-      
-      {/* Schema */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          "name": "Projects",
-          "description": "Portfolio of interior design and architectural projects",
-          "url": "https://aax.kevalontechnology.in/projects"
-        })}
-      </script>
-    </Helmet>
-
     <Breadchrumb />
     <section className="py-20 bg-[#f7f9f9]">
 
