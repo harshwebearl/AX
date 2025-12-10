@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { BASEURL } from "../../BASEURL";
 
 export default function ProjectList() {
-  
-  // MAIN CATEGORIES + SUB CATEGORIES + IMAGES
-  const projectData = [
+  const [projectData, setProjectData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Static fallback data for development/testing
+  const staticProjectData = [
     {
       name: "Architecture",
       subcategories: [
@@ -77,6 +81,66 @@ export default function ProjectList() {
     },
   ];
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem("admin-token");
+        const headers = { "Content-Type": "application/json" };
+        if (token) headers["Authorization"] = `Bearer ${token}`;
+
+        const res = await fetch(`${BASEURL}/admin/project`, { headers });
+        if (!res.ok) {
+          throw new Error(`Failed to fetch projects (${res.status})`);
+        }
+
+        const data = await res.json();
+        const projects = data.projects || data;
+
+        if (!Array.isArray(projects)) {
+          throw new Error("Invalid projects data format");
+        }
+
+        // Group projects by categoryId
+        const groupedByCategory = {};
+        projects.forEach((proj) => {
+          const catId = proj.categoryId || "uncategorized";
+          if (!groupedByCategory[catId]) {
+            groupedByCategory[catId] = [];
+          }
+          groupedByCategory[catId].push({
+            _id: proj._id,
+            title: proj.projectName,
+            cover: proj.coverImage,
+            images: [proj.coverImage], // fallback; could fetch more images separately
+          });
+        });
+
+        // Convert grouped data to expected format
+        const formattedData = Object.entries(groupedByCategory).map(([catId, items]) => ({
+          name: catId, // TODO: fetch category name from API if needed
+          categoryId: catId,
+          subcategories: items,
+        }));
+
+        setProjectData(formattedData);
+        setError(null);
+      } catch (err) {
+        console.error("Failed to fetch projects:", err);
+        setError(err.message);
+        // Fallback to static data on error
+        setProjectData(staticProjectData);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  // Use fetched data or static data as fallback
+  const displayData = projectData.length > 0 ? projectData : staticProjectData;
+
   return (
     <div className="p-6">
 
@@ -94,8 +158,11 @@ export default function ProjectList() {
         </Link>
       </div>
 
+      {loading && <p className="text-center text-gray-500">Loading projects...</p>}
+      {error && <p className="text-center text-red-500">Error: {error}</p>}
+
       {/* MAIN CATEGORY SECTION */}
-      {projectData.map((category, i) => (
+      {displayData.map((category, i) => (
         <div key={i} className="mb-12">
 
           {/* Category Title */}

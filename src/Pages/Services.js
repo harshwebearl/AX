@@ -1,41 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
 import { FaCubes, FaDraftingCompass, FaHome, FaBuilding, FaPaintBrush, FaLayerGroup } from "react-icons/fa";
+import { BASEURL } from "../BASEURL";
 
 export default function Services() {
-  const services = [
-    {
-      title: "Residential Architecture",
-      icon: <FaHome />,
-      desc: "Complete home architecture, planning, and space design tailored for modern living.",
-    },
-    {
-      title: "Interior Designing",
-      icon: <FaPaintBrush />,
-      desc: "Premium interiors that blend aesthetics with functionality for homes, offices, and boutiques.",
-    },
-    {
-      title: "Commercial Architecture",
-      icon: <FaBuilding />,
-      desc: "Designing business spaces that elevate brand identity and customer experience.",
-    },
-    {
-      title: "3D Visualization",
-      icon: <FaCubes />,
-      desc: "High-quality 3D renders that bring your architectural vision to life with clarity.",
-    },
-    {
-      title: "2D Layout Planning",
-      icon: <FaLayerGroup />,
-      desc: "Smart and precise architectural layout planning for optimized usable space.",
-    },
-    {
-      title: "Turnkey Solutions",
-      icon: <FaDraftingCompass />,
-      desc: "End-to-end turnkey solutions delivering seamless planning, design, execution, and delivery with unmatched quality and reliability.",
-    },
-  ];
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Map icon names to React icon components
+  const iconMap = {
+    turnkey: <FaDraftingCompass />,
+    home: <FaHome />,
+    paint: <FaPaintBrush />,
+    building: <FaBuilding />,
+    cubes: <FaCubes />,
+    layout: <FaLayerGroup />,
+  };
+
+  
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(`${BASEURL}/admin/service`);
+        if (!res.ok) throw new Error(`Failed to fetch services (${res.status})`);
+
+        const data = await res.json();
+        const serviceList = data.services || data;
+
+        if (Array.isArray(serviceList) && serviceList.length > 0) {
+          // Map API response to component format
+          const mapped = serviceList.map((svc) => ({
+            title: svc.serviceName || svc.title || "",
+            desc: svc.description || svc.desc || "",
+            // Map icon name to React component; fallback to home icon
+            icon: iconMap[svc.icon && svc.icon.name] || iconMap[svc.icon && svc.icon.icon] || <FaHome />,
+          }));
+          setServices(mapped);
+        } else {
+          setServices([]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch services:", err);
+        setServices([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   return (<>
 
