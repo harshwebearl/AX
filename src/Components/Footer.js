@@ -143,9 +143,9 @@ const Footer = () => {
           <p className="text-center text-[#253f47] text-sm border-t border-gray-300 pt-4">
             © {new Date().getFullYear()} <strong>AAXIERO DESIGN STUDIO</strong> . All Rights Reserved.
           </p>
-          {/* <p className="text-center text-[#253f47] text-sm border-t border-gray-300 pb-0 ">
+          <p className="text-center text-[#253f47] text-sm border-t border-gray-300 pb-0 ">
             Developed by <a href="https://www.apnawebx.com" target="_blank" rel=" noreferrer" className="hover:text-[#2C4953] font-bold">ApnaWebX</a>
-          </p> */}
+          </p>
         </div>
       </div>
     </footer>
