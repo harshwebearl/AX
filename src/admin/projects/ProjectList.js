@@ -4,8 +4,11 @@ import { BASEURL } from "../../BASEURL";
 
 export default function ProjectList() {
   const [projectData, setProjectData] = useState([]);
+  const [filterName, setFilterName] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [notification, setNotification] = useState({ open: false, type: '', message: '' });
+  const [confirmDelete, setConfirmDelete] = useState({ open: false, id: null, title: '' });
 
   // Static fallback data for development/testing
   const staticProjectData = [
@@ -101,14 +104,14 @@ export default function ProjectList() {
           throw new Error("Invalid projects data format");
         }
 
-        // Group projects by categoryId
+        // Group projects by subCategoryId.name (fall back to categoryId)
         const groupedByCategory = {};
         projects.forEach((proj) => {
-          const catId = proj.categoryId || "uncategorized";
-          if (!groupedByCategory[catId]) {
-            groupedByCategory[catId] = [];
+          const catName = (proj.subCategoryId && (proj.subCategoryId.name || proj.subCategoryId)) || proj.categoryId || "uncategorized";
+          if (!groupedByCategory[catName]) {
+            groupedByCategory[catName] = [];
           }
-          groupedByCategory[catId].push({
+          groupedByCategory[catName].push({
             _id: proj._id,
             title: proj.projectName,
             cover: proj.coverImage,
@@ -117,9 +120,8 @@ export default function ProjectList() {
         });
 
         // Convert grouped data to expected format
-        const formattedData = Object.entries(groupedByCategory).map(([catId, items]) => ({
-          name: catId, // TODO: fetch category name from API if needed
-          categoryId: catId,
+        const formattedData = Object.entries(groupedByCategory).map(([name, items]) => ({
+          name,
           subcategories: items,
         }));
 
@@ -141,6 +143,58 @@ export default function ProjectList() {
   // Use fetched data or static data as fallback
   const displayData = projectData.length > 0 ? projectData : staticProjectData;
 
+  // Apply text filter on category (subCategory name)
+  const categoriesToRender = displayData.filter((category) => {
+    if (!filterName || filterName.trim() === "") return true;
+    return category.name && category.name.toLowerCase().includes(filterName.toLowerCase());
+  });
+
+  // Helper to build full image URL when API returns a path like `/uploads/...`
+  const IMAGE_HOST = "https://aaxiero.kevalontechnology.in";
+  const imageUrl = (p) => {
+    if (!p) return "";
+    if (p.startsWith("http") || p.startsWith("data:")) return p;
+    if (p.startsWith("/")) return `${IMAGE_HOST}${p}`;
+    return `${IMAGE_HOST}/${p}`;
+  };
+
+  const showNotification = (type, message, autoClose = 3000) => {
+    setNotification({ open: true, type, message });
+    if (autoClose) setTimeout(() => setNotification({ open: false, type: '', message: '' }), autoClose);
+  };
+
+  const deleteProject = async (projectId) => {
+    try {
+      const token = localStorage.getItem('admin-token');
+      const headers = {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+
+      const res = await fetch(`${BASEURL}/admin/project/${projectId}`, {
+        method: 'DELETE',
+        headers,
+      });
+      const data = await res.json();
+      if (res.ok) {
+        // Remove the deleted project from local state
+        const updated = projectData.map((cat) => ({
+          ...cat,
+          subcategories: cat.subcategories.filter((s) => s._id !== projectId),
+        })).filter((cat) => cat.subcategories.length > 0);
+        setProjectData(updated);
+        showNotification('success', data.message || 'Project deleted successfully');
+      } else {
+        console.error('Delete failed', data);
+        showNotification('error', data.message || 'Failed to delete project');
+      }
+    } catch (err) {
+      console.error('Error deleting project', err);
+      showNotification('error', 'Network error while deleting project');
+    } finally {
+      setConfirmDelete({ open: false, id: null, title: '' });
+    }
+  };
+  
+
   return (
     <div className="p-6">
 
@@ -154,15 +208,25 @@ export default function ProjectList() {
           to="/admin/add-subcategory"
           className="bg-[#2C4953] text-white px-4 py-2 rounded-md font-semibold hover:bg-[#476772] transition"
         >
-          + Add New Sub-Category
+          + Add New Project
         </Link>
       </div>
 
       {loading && <p className="text-center text-gray-500">Loading projects...</p>}
       {error && <p className="text-center text-red-500">Error: {error}</p>}
 
+      {/* FILTER INPUT */}
+      {/* <div className="mb-6">
+        <input
+          value={filterName}
+          onChange={(e) => setFilterName(e.target.value)}
+          placeholder="Filter by sub-category name (e.g. Office Interior)"
+          className="border p-2 rounded w-full md:w-1/3"
+        />
+      </div> */}
+
       {/* MAIN CATEGORY SECTION */}
-      {displayData.map((category, i) => (
+      {categoriesToRender.map((category, i) => (
         <div key={i} className="mb-12">
 
           {/* Category Title */}
@@ -180,7 +244,7 @@ export default function ProjectList() {
               >
                 {/* Cover Image */}
                 <img
-                  src={sub.cover}
+                  src={imageUrl(sub.cover)}
                   alt={sub.title}
                   className="w-full h-48 object-cover"
                 />
@@ -208,7 +272,7 @@ export default function ProjectList() {
                     </Link>
 
                     <button
-                      onClick={() => alert("Delete subcategory logic coming")}
+                      onClick={() => setConfirmDelete({ open: true, id: sub._id, title: sub.title })}
                       className="text-red-500 hover:text-red-700"
                     >
                       <i className="fa-solid fa-trash"></i>
@@ -222,6 +286,62 @@ export default function ProjectList() {
           </div>
         </div>
       ))}
+
+      {/* Confirm Delete Modal */}
+      {confirmDelete.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setConfirmDelete({ open: false, id: null, title: '' })}></div>
+          <div className="bg-white rounded-lg shadow-lg p-6 z-50 max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold mb-2">Confirm Delete</h3>
+            <p>Are you sure you want to delete "{confirmDelete.title}"? This action cannot be undone.</p>
+            <div className="mt-4 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setConfirmDelete({ open: false, id: null, title: '' })}
+                className="px-4 py-2 bg-gray-200 rounded-md"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => deleteProject(confirmDelete.id)}
+                className="px-4 py-2 bg-red-600 text-white rounded-md"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Centered Notification Modal */}
+      {notification.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setNotification({ open: false, type: '', message: '' })}></div>
+          <div className="bg-white rounded-lg shadow-lg p-6 z-50 max-w-md w-full mx-4">
+            <div className="flex items-start">
+              <div className={`text-2xl mr-3 ${notification.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+                {notification.type === 'success' ? '✔' : '✖'}
+              </div>
+              <div>
+                <div className={`font-semibold ${notification.type === 'success' ? 'text-green-700' : 'text-red-700'}`}>
+                  {notification.type === 'success' ? 'Success' : 'Error'}
+                </div>
+                <div className="mt-1 text-sm text-gray-700">{notification.message}</div>
+              </div>
+            </div>
+            <div className="mt-4 text-right">
+              <button
+                type="button"
+                onClick={() => setNotification({ open: false, type: '', message: '' })}
+                className="px-4 py-2 bg-[#2C4953] text-white rounded-md"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
