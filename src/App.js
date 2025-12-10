@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import Home from './Pages/Home';
 import About from './Pages/About';
@@ -25,15 +26,12 @@ import GalleryImages from './admin/gallery/GalleryImages';
 import ServiceList from './admin/services/ServiceList';
 import AddService from './admin/services/AddService';
 import EditService from './admin/services/EditService';
-// import CategoriesList from './admin/categories/CategoriesList';
-// import Addcategories from './admin/categories/Addcategories';
-// import Editcategories from './admin/categories/Editcategories';
 
 
 
 function App() {
   return (
-    <>
+    <HelmetProvider>
       <ScrollToTop />
       <Navbar />
       <Routes>
@@ -79,7 +77,7 @@ function App() {
       </Routes>
 
       <Footer />
-    </>
+    </HelmetProvider>
   );
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async';
 import { motion } from "framer-motion";
 import AchievementSection from "../Components/AchievementSection";
 import Breadchrumb from "../Components/Breadchrumb";
@@ -7,6 +8,33 @@ import { FaArrowRight } from 'react-icons/fa';
 
 const About = () => {
   return (<>
+    <Helmet>
+      <title>About AAx Kevalon Technology - Our Design Philosophy</title>
+      <meta name="description" content="Learn about AAxiero Design Studio's philosophy, values, and approach to creating refined interior design and architectural spaces." />
+      <meta name="keywords" content="AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior" />
+      <link rel="canonical" href="https://aax.kevalontechnology.in/about" />
+      
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="About AAxiero Design Studio - Our Design Philosophy" />
+      <meta property="og:description" content="Discover our design philosophy and approach to creating meaningful spaces" />
+      <meta property="og:url" content="https://aax.kevalontechnology.in/about" />
+      
+      {/* Schema - Organization Profile */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "AAxiero Design Studio",
+            "description": "Premium interior design and architectural visualization services with precision and innovation",
+            "url": "https://aax.kevalontechnology.in",
+            "knowsAbout": ["Interior Design", "Architecture", "Space Design", "Architectural Visualization"]
+          }
+        })}
+      </script>
+    </Helmet>
 
     <Breadchrumb />
 
@@ -24,9 +52,9 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="w-full md:w-1/2 text-left"
           >
-            <h2 className="text-4xl md:text-5xl font-[Vollkorn] text-[#2C4953] font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-[Vollkorn] text-[#2C4953] font-bold mb-6">
               Our <span className="text-[#6b8c9a]">Design Philosophy</span>
-            </h2>
+            </h1>
 
             <p className="text-gray-700 text-lg leading-relaxed mb-6 font-[Vollkorn]">
               We believe architecture is not just about structures, but experiences.
@@ -41,14 +69,14 @@ const About = () => {
 
             <div className="flex flex-wrap gap-6 mt-6">
               <div className="bg-[#253f47] text-white px-6 py-4 rounded-xl shadow-md w-[220px] hover:bg-[#476772] transition-all duration-300">
-                <h4 className="text-3xl font-semibold mb-1 font-['Cormorant_Garamond']
-">Precision</h4>
+                <h3 className="text-3xl font-semibold mb-1 font-['Cormorant_Garamond']
+">Precision</h3>
                 <p className="text-sm text-gray-200 font-[Vollkorn]">Every line and detail reflects accuracy and purpose.</p>
               </div>
 
               <div className="bg-[#476772] text-white px-6 py-4 rounded-xl shadow-md w-[220px] hover:bg-[#253f47] transition-all duration-300">
-                <h4 className="text-3xl font-semibold mb-1 font-['Cormorant_Garamond']
-">Innovation</h4>
+                <h3 className="text-3xl font-semibold mb-1 font-['Cormorant_Garamond']
+">Innovation</h3>
                 <p className="text-sm text-gray-200 font-[Vollkorn]">We integrate new design ideas and sustainable concepts.</p>
               </div>
 
@@ -65,7 +93,7 @@ const About = () => {
           >
             <img
               src="/images/project/12.jpg"
-             alt="AAxiero Design Studio"
+             alt="AAxiero Design Studio Interior Design Work"
               className="w-full h-[350px] md:h-[500px] object-cover rounded-2xl shadow-2xl"
             />
             <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-[#6b8c9a]/20 rounded-full blur-2xl"></div>
@@ -90,7 +118,7 @@ const About = () => {
         >
           <img
             src="/images/project/11.jpg"
-            alt="AAxiero Design Studio"
+            alt="AAxiero Design Studio - Years of Excellence"
             className="rounded-2xl shadow-2xl w-full md:h-[500px] h-[300px] sm:h-[400px] object-cover"
           />
           <div className="absolute -bottom-8 md:-right-8 bg-white shadow-xl p-3 md:p-6 rounded-xl">

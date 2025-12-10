@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import AboutSection from "../Components/AboutSection";
 import ServiceSection from "../Components/ServiceSection";
 import AchievementSection from "../Components/AchievementSection";
 import DigitalShowcaseCarousel from "../Components/DigitalShowcaseCarousel";
 import CostCalculator from "../Components/CostCalculator";
+import { organizationSchema } from "../utils/schemaMarkup";
 
 
 export default function Home() {
@@ -29,6 +31,30 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans pt-18 md:pt-22 ">
+      <Helmet>
+        <title>AAxiero Design Studio - Premium Interior & Architectural Design</title>
+        <meta name="description" content="Discover refined spaces designed with precision and creativity. Transform your vision into reality with AAxiero Design Studio. Expert interior design and architectural visualization." />
+          <meta name="keywords" content="AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior" />
+        <link rel="canonical" href="https://aax.kevalontechnology.in/" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AAxiero Design Studio - Premium Interior & Architectural Design" />
+        <meta property="og:description" content="Transform your vision into reality with expert interior design and architectural services" />
+        <meta property="og:url" content="https://aax.kevalontechnology.in/" />
+        <meta property="og:image" content="https://aax.kevalontechnology.in/images/og-image.jpg" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AAxiero Design Studio" />
+        <meta name="twitter:description" content="Premium Interior & Architectural Design Services" />
+        <meta name="twitter:image" content="https://aax.kevalontechnology.in/images/og-image.jpg" />
+        
+        {/* Schema Markup */}
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+      </Helmet>
 
       <section className="relative h-[70vh] md:h-screen flex items-center justify-center overflow-hidden bg-[url(/images/project/6.jpg)] bg-cover bg-center">
         {/* Animated Background */}

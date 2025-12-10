@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async';
 import Breadchrumb from "../Components/Breadchrumb";
 import { motion } from "framer-motion";
 import CostCalculator from '../Components/CostCalculator';
@@ -69,6 +70,39 @@ const Contact = () => {
 
 
   return (<>
+    <Helmet>
+      <title>Contact AAx Kevalon Technology - Get In Touch</title>
+      <meta name="description" content="Contact AAx Kevalon Technology for your interior design and architectural projects. Phone, email, and contact form available." />
+      <meta name="keywords" content="AAxiero Design Studio, AAxiero Design Studio Ahmedabad, AAxiero Design Studio Nikol, Design studio in Ahmedabad, Design studio in Nikol, Interior designer in Nikol, Interior designer in Ahmedabad, Best interior designer near me, Architect in Nikol Ahmedabad, Architect near me, Top interior designer in Ahmedabad, Design studio near Nikol, Home interior designer Nikol Ahmedabad, Commercial interior designer Ahmedabad, Interior Design, Residential interior designer Ahmedabad, 2BHK interior designer Ahmedabad, 3BHK interior designer Ahmedabad, Luxury interior designer Ahmedabad, Budget interior designer Ahmedabad, Modular kitchen designer Ahmedabad, Living room interior designer Ahmedabad, Office interior designer Ahmedabad, Shop interior designer Ahmedabad, Showroom interior designer Ahmedabad, Restaurant interior designer Ahmedabad, Architectural design services Ahmedabad, Residential architecture Ahmedabad, Commercial architecture Ahmedabad, House plan designer Ahmedabad, Turnkey interior solutions Ahmedabad, Turnkey project contractor Ahmedabad, Turnkey services in Nikol, Best interior designer in Ahmedabad, Affordable interior designer Ahmedabad, Interior designer with 3D design Ahmedabad, Interior contractor in Ahmedabad, Modern home interior designer Ahmedabad, AAxiero Design Studio near Parikh Hospital, AAxiero Design Studio Nikol interior, AAxiero design and architecture studio Ahmedabad, #InteriorDesignerAhmedabad, #InteriorDesignerNikol, #ArchitectAhmedabad, #DesignStudioAhmedabad, #TurnkeySolutions, #HomeInteriorDesign, #CommercialInterior" />
+      <link rel="canonical" href="https://aax.kevalontechnology.in/contact" />
+      
+      {/* Open Graph */}
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Contact AAxiero Design Studio" />
+      <meta property="og:description" content="Get in touch with our design experts for your next project" />
+      <meta property="og:url" content="https://aax.kevalontechnology.in/contact" />
+      
+      {/* Schema - Contact Page */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact AAxiero Design Studio",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "AAxiero Design Studio",
+            "telephone": "+91-8460431159",
+            "email": "aaxierodesignstudio@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Nikol",
+              "addressRegion": "Gujarat",
+              "addressCountry": "IN"
+            }
+          }
+        })}
+      </script>
+    </Helmet>
 
     <Breadchrumb />
     <section className="relative bg-[#f7f9f9] overflow-hidden pb-20 pt-20">
@@ -77,7 +111,7 @@ const Contact = () => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {/* Header */}
-        <motion.h2
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
@@ -86,7 +120,7 @@ const Contact = () => {
           className="text-5xl md:text-6xl font-[Vollkorn] text-[#2C4953] font-bold text-center mb-6"
         >
           Get In <span className="text-[#6b8c9a]">Touch</span>
-        </motion.h2>
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
