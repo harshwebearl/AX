@@ -1,6 +1,78 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BASEURL } from "../BASEURL";
 
 export default function AdminDashboard() {
+  const [totalProjects, setTotalProjects] = useState(0);
+  const [totalGalleryImages, setTotalGalleryImages] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const token = localStorage.getItem("admin-token");
+        const headers = { "Content-Type": "application/json" };
+        if (token) headers["Authorization"] = `Bearer ${token}`;
+
+        // Fetch projects
+        const res = await fetch(`${BASEURL}/admin/project`, { headers });
+        if (res.ok) {
+          const data = await res.json();
+          const projects = data.projects || data.data || [];
+          let count = 0;
+          
+          // Count total projects (handle nested subcategories)
+          if (Array.isArray(projects)) {
+            projects.forEach((cat) => {
+              if (cat.subcategories && Array.isArray(cat.subcategories)) {
+                count += cat.subcategories.length;
+              } else {
+                count += 1;
+              }
+            });
+          }
+          
+          setTotalProjects(count);
+        }
+
+        // Fetch gallery images
+        const categoriesRes = await fetch(`${BASEURL}/admin/categories`, { headers });
+        if (categoriesRes.ok) {
+          const categoriesData = await categoriesRes.json();
+          const categories = categoriesData.categories || categoriesData.data || [];
+          let totalImages = 0;
+          
+          // Fetch images from each category
+          if (Array.isArray(categories)) {
+            for (const cat of categories) {
+              const catId = cat._id || cat.id;
+              if (catId) {
+                try {
+                  const galleryRes = await fetch(`${BASEURL}/admin/gallery/${catId}`, { headers });
+                  if (galleryRes.ok) {
+                    const galleryData = await galleryRes.json();
+                    const images = galleryData.images || galleryData.data || [];
+                    totalImages += Array.isArray(images) ? images.length : 0;
+                  }
+                } catch (err) {
+                  console.warn(`Failed to fetch images for category ${catId}`, err);
+                }
+              }
+            }
+          }
+          
+          setTotalGalleryImages(totalImages);
+        }
+      } catch (err) {
+        console.error("Failed to fetch data", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
   return (<>
      {/* PAGE CONTENT */}
       <div className="p-6">
@@ -21,7 +93,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-[#2C4953] font-[Vollkorn] text-2xl">Total Projects</p>
-                <h2 className="text-3xl text-[#2C4953] font-bold text-center font-['Cormorant_Garamond']">7</h2>
+                <h2 className="text-3xl text-[#2C4953] font-bold text-center font-['Cormorant_Garamond']">{loading ? "..." : totalProjects}</h2>
               </div>
             </div>
           </Link>

@@ -1,31 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { BASEURL } from "../../BASEURL";
 
 export default function GalleryList() {
 
-  // FIXED CATEGORIES (you can edit name/thumbnail later)
-  const galleryCategories = [
-    {
-      id: "interior",
-      name: "Interior",
-      thumb: "/images/project/1.jpg",
-    },
-    {
-      id: "architecture",
-      name: "Architecture",
-      thumb: "/images/project/8.jpg",
-    },
-    {
-      id: "commercial",
-      name: "Commercial",
-      thumb: "/images/project/5.jpg",
-    },
-    {
-      id: "turnkey",
-      name: "Turnkey",
-      thumb: "/images/project/12.jpg",
-    },
-  ];
+  // categories now loaded from API (`/admin/categories`)
+  const [galleryCategories, setGalleryCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const IMAGE_HOST = "https://aaxiero.kevalontechnology.in";
+  const imageUrl = (p, fallback = "/images/project/1.jpg") => {
+    if (!p) return fallback;
+    if (p.startsWith("http") || p.startsWith("data:")) return p;
+    if (p.startsWith("/")) return `${IMAGE_HOST}${p}`;
+    return `${IMAGE_HOST}/${p}`;
+  };
+
+  useEffect(() => {
+    let mounted = true;
+    const load = async () => {
+      try {
+        const res = await fetch(`${BASEURL}/admin/categories`);
+        if (!res.ok) {
+          setLoading(false);
+          return;
+        }
+        const data = await res.json();
+        const list = data.categories || data.subcategories || data || [];
+        const cats = (Array.isArray(list) ? list : []).map((s) => ({
+          id: s._id || s.id || s.name,
+          name: s.name || s.title || s.categoryName || String(s._id || s.id || "Unnamed"),
+          thumb: imageUrl(s.image || s.path || s.thumbnail || s.thumb),
+        }));
+        if (mounted) setGalleryCategories(cats);
+      } catch (err) {
+        console.error("Failed to load gallery categories", err);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+    load();
+    return () => { mounted = false; };
+  }, []);
 
   return (
     <div className="p-6">
