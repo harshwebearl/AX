@@ -70,7 +70,7 @@ const About = () => {
         <div className="absolute top-0 right-0 w-72 h-72 bg-[#6b8c9a]/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#2C4953]/10 rounded-full blur-3xl"></div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center gap-14 relative z-10">
+        <div className="max-w-7xl mt-24 mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center gap-14 relative z-10">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
