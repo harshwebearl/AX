@@ -11,52 +11,14 @@ const Gallery = () => {
   const [error, setError] = useState(null);
 
   // Provided image base URL
-  const IMAGE_BASE = "https://aax.kevalontechnology.in";
-
-  // Set metadata using React 19 Metadata API
-  useEffect(() => {
-    document.title = "Gallery - AAxiero Design Studio";
-    
-    const setMetaTag = (name, value, property = false) => {
-      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
-      let meta = document.querySelector(selector);
-      
-      if (!meta) {
-        meta = document.createElement('meta');
-        if (property) {
-          meta.setAttribute('property', name);
-        } else {
-          meta.setAttribute('name', name);
-        }
-        document.head.appendChild(meta);
-      }
-      
-      meta.setAttribute('content', value);
-    };
-
-    setMetaTag('description', 'Browse our gallery of design projects and architectural visualizations.');
-    setMetaTag('keywords', 'gallery, design gallery, interior design portfolio, architectural projects');
-
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/gallery');
-
-    setMetaTag('og:type', 'website', true);
-    setMetaTag('og:title', 'Gallery - AAxiero Design Studio', true);
-    setMetaTag('og:description', 'Browse our design gallery', true);
-    setMetaTag('og:url', 'https://aax.kevalontechnology.in/gallery', true);
-  }, []);
+  const IMAGE_BASE = "https://aaxiero.kevalontechnology.in";
 
   useEffect(() => {
     let mounted = true;
     setLoading(true);
     setError(null);
 
-    fetch('https://aax.kevalontechnology.in/aaxiero/admin/gallery')
+    fetch('https://aaxiero.kevalontechnology.in/aaxiero/admin/gallery')
       .then((res) => {
         const ct = res.headers.get('content-type') || '';
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -139,10 +101,9 @@ const Gallery = () => {
     return acc;
   }, {});
 
-  return (
-    <>
-      <Breadchrumb />
-      <section className="py-20 bg-[#f7f9f9]">
+  return (<>
+    <Breadchrumb />
+     <section className="py-20 bg-[#f7f9f9]">
 
       {/* Page Title */}
       <h2 className="text-center text-5xl md:text-6xl font-[Vollkorn] text-[#2C4953] font-bold mb-12">
