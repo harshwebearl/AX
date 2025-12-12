@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { BASEURL } from "../../BASEURL";
 import Modal from "../../Components/Modal";
+import Preloader from "../../Components/Preloader";
 
 export default function GalleryImages() {
   const { categoryId } = useParams();
@@ -22,6 +23,7 @@ export default function GalleryImages() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [images, setImages] = useState([]);
+  const [loadingImages, setLoadingImages] = useState(true);
 
   // Build uploads base and helper to ensure images are full URLs
   const uploadsBase = (() => {
@@ -74,6 +76,7 @@ export default function GalleryImages() {
   useEffect(() => {
     const fetchGalleryData = async () => {
       try {
+        setLoadingImages(true);
         const response = await fetch(
           `${BASEURL}/admin/gallery/${categoryId}`
         );
@@ -104,10 +107,17 @@ export default function GalleryImages() {
 
           if (galleryData.gallery.images && galleryData.gallery.images.length > 0) {
             setImages(galleryData.gallery.images.map(toFullUrl));
+          } else {
+            setImages([]);
           }
+        } else {
+          setImages([]);
         }
       } catch (error) {
         console.error("Error fetching gallery:", error);
+        setImages([]);
+      } finally {
+        setLoadingImages(false);
       }
     };
 
@@ -286,35 +296,40 @@ export default function GalleryImages() {
       {/* IMAGE GRID */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
 
-        {images.map((img, i) => (
-          <div
-            key={i}
-            className="relative border border-[#2C4953] rounded-xl shadow-md overflow-hidden bg-white"
-          >
-            <img
-              src={img}
-              alt="AAxiero Design Studio"
-              className="w-full h-40 object-cover"
-            />
+        {loadingImages ? (
+          <div className="col-span-full flex justify-center py-8">
+            <Preloader />
+          </div>
+        ) : images.length === 0 ? (
+          <div className="col-span-full text-center text-gray-600 py-8">No images found.</div>
+        ) : (
+          images.map((img, i) => (
+            <div
+              key={i}
+              className="relative border border-[#2C4953] rounded-xl shadow-md overflow-hidden bg-white"
+            >
+              <img
+                src={img}
+                alt="AAxiero Design Studio"
+                className="w-full h-40 object-cover"
+              />
 
-            {/* ACTION BUTTONS */}
-            <div className="absolute top-2 right-2 flex flex-col gap-2">
+              {/* ACTION BUTTONS */}
+              <div className="absolute top-2 right-2 flex flex-col gap-2">
 
-              {/* Replace Image */}
-              
+                {/* Delete */}
+                <button
+                  className="bg-red-600 text-white text-sm p-1 rounded"
+                  onClick={() => deleteImage(img)}
+                >
+                  <i className="fa-solid fa-trash"></i>
+                </button>
 
-              {/* Delete */}
-              <button
-                className="bg-red-600 text-white text-sm p-1 rounded"
-                onClick={() => deleteImage(img)}
-              >
-                <i className="fa-solid fa-trash"></i>
-              </button>
+              </div>
 
             </div>
-
-          </div>
-        ))}
+          ))
+        )}
 
       </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
+import Preloader from "../Components/Preloader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { BASEURL } from "../BASEURL";
@@ -184,7 +185,7 @@ const Projects = () => {
         <Breadchrumb />
         <section className="py-20 bg-[#f7f9f9]">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
-            <p className="text-center text-gray-500">Loading projects...</p>
+            <Preloader />
           </div>
         </section>
       </>

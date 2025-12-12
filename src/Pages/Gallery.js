@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
+import Preloader from "../Components/Preloader";
 
 const Gallery = () => {
   // state
@@ -131,16 +132,14 @@ const Gallery = () => {
 
       {/* Gallery Grid */}
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {loading && (
-          <div className="text-center py-6 text-gray-600">Loading images…</div>
-        )}
+        {loading && <Preloader />}
         {error && (
           <div className="text-center py-6 text-red-600">Error: {error}</div>
         )}
         {activeFilter === 'All' ? (
           // Render sections per category
           Object.keys(groupedImages).length === 0 ? (
-            <div className="text-center py-6 text-gray-600">No images available.</div>
+            <div className="text-center py-6 text-gray-600"></div>
           ) : (
             Object.entries(groupedImages).map(([category, imgs]) => (
               <div key={category} className="mb-12">

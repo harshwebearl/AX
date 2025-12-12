@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaPaintBrush, FaBuilding, FaCubes, FaLayerGroup, FaDraftingCompass } from "react-icons/fa";
 import { BASEURL } from "../../BASEURL";
+import Preloader from "../../Components/Preloader";
 
 export default function ServiceList() {
   const [services, setServices] = useState([]);
@@ -107,7 +108,11 @@ export default function ServiceList() {
       {/* SERVICES GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        {loading && <div className="text-center col-span-full">Loading services...</div>}
+        {loading && (
+          <div className="col-span-full flex justify-center">
+            <Preloader />
+          </div>
+        )}
 
         {error && (
           <div className="text-center text-red-600 col-span-full">{error}</div>

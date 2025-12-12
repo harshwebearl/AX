@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BASEURL } from "../../BASEURL";
+import Preloader from "../../Components/Preloader";
 
 export default function ProjectList() {
   const [projectData, setProjectData] = useState([]);
@@ -10,79 +11,7 @@ export default function ProjectList() {
   const [notification, setNotification] = useState({ open: false, type: '', message: '' });
   const [confirmDelete, setConfirmDelete] = useState({ open: false, id: null, title: '' });
 
-  // Static fallback data for development/testing
-  const staticProjectData = [
-    {
-      name: "Architecture",
-      subcategories: [
-        {
-          _id: "arch1",
-          title: "Shivalik Heights – Ahmedabad",
-          cover: "/images/project/12.jpg",
-          images: [
-            "/images/project/12.jpg",
-            "/images/project/11.jpg",
-            "/images/project/10.jpg",
-          ]
-        },
-        {
-          _id: "arch2",
-          title: "Skyview Residency",
-          cover: "/images/project/9.jpg",
-          images: [
-            "/images/project/9.jpg",
-            "/images/project/8.jpg",
-          ]
-        }
-      ]
-    },
-
-    {
-      name: "House Interior",
-      subcategories: [
-        {
-          _id: "house1",
-          title: "Green Villa – Interior",
-          cover: "/images/project/7.jpg",
-          images: [
-            "/images/project/7.jpg",
-            "/images/project/6.jpg",
-          ]
-        }
-      ]
-    },
-
-    {
-      name: "Office Interior",
-      subcategories: [
-        {
-          _id: "office1",
-          title: "Corporate Cabin Office",
-          cover: "/images/project/5.jpg",
-          images: [
-            "/images/project/5.jpg",
-            "/images/project/4.jpg",
-          ]
-        }
-      ]
-    },
-
-    {
-      name: "Commercial Interior",
-      subcategories: [
-        {
-          _id: "com1",
-          title: "Retail Showroom",
-          cover: "/images/project/3.jpg",
-          images: [
-            "/images/project/3.jpg",
-            "/images/project/2.jpg",
-            "/images/project/1.jpg",
-          ]
-        }
-      ]
-    },
-  ];
+  // removed static fallback data — we want to show no data if fetch fails
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -130,8 +59,8 @@ export default function ProjectList() {
       } catch (err) {
         console.error("Failed to fetch projects:", err);
         setError(err.message);
-        // Fallback to static data on error
-        setProjectData(staticProjectData);
+        // On error, do not use static fallback — show empty list
+        setProjectData([]);
       } finally {
         setLoading(false);
       }
@@ -140,8 +69,8 @@ export default function ProjectList() {
     fetchProjects();
   }, []);
 
-  // Use fetched data or static data as fallback
-  const displayData = projectData.length > 0 ? projectData : staticProjectData;
+  // Use fetched data (no static fallback)
+  const displayData = projectData;
 
   // Apply text filter on category (subCategory name)
   const categoriesToRender = displayData.filter((category) => {
@@ -212,7 +141,11 @@ export default function ProjectList() {
         </Link>
       </div>
 
-      {loading && <p className="text-center text-gray-500">Loading projects...</p>}
+      {loading && (
+        <div className="my-6">
+          <Preloader />
+        </div>
+      )}
       {error && <p className="text-center text-red-500">Error: {error}</p>}
 
       {/* FILTER INPUT */}

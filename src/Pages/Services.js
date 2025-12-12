@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
 import { FaCubes, FaDraftingCompass, FaHome, FaBuilding, FaPaintBrush, FaLayerGroup } from "react-icons/fa";
 import { BASEURL } from "../BASEURL";
+import Preloader from "../Components/Preloader";
+
 
 export default function Services() {
   const [services, setServices] = useState([]);
@@ -125,27 +127,35 @@ export default function Services() {
 
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}   
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="group bg-white rounded-2xl shadow-md border border-gray-200 p-8 text-center 
-                       hover:-translate-y-2 hover:shadow-xl transition-all duration-500 flex flex-col justify-center items-center"
-          >
-            <div className="text-5xl text-[#2C4953] mb-6 group-hover:text-[#6b8c9a] transition-colors">
-              {service.icon}
-            </div>
-            <h2 className="text-2xl font-[Vollkorn] text-[#2C4953] font-semibold mb-3">
-              {service.title}
-            </h2>
-            <p className="text-gray-600 font-[Vollkorn] leading-relaxed">
-              {service.desc}
-            </p>
-          </motion.div>
-        ))}
+        {loading ? (
+          <div className="col-span-full">
+            <Preloader />
+          </div>
+        ) : services.length === 0 ? (
+          <div className="col-span-full text-center text-gray-600 py-12">No services available.</div>
+        ) : (
+          services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}   
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group bg-white rounded-2xl shadow-md border border-gray-200 p-8 text-center 
+                         hover:-translate-y-2 hover:shadow-xl transition-all duration-500 flex flex-col justify-center items-center"
+            >
+              <div className="text-5xl text-[#2C4953] mb-6 group-hover:text-[#6b8c9a] transition-colors">
+                {service.icon}
+              </div>
+              <h2 className="text-2xl font-[Vollkorn] text-[#2C4953] font-semibold mb-3">
+                {service.title}
+              </h2>
+              <p className="text-gray-600 font-[Vollkorn] leading-relaxed">
+                {service.desc}
+              </p>
+            </motion.div>
+          ))
+        )}
       </div>
 
     </section>

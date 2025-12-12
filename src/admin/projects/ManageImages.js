@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useRef } from "react";
 import { BASEURL } from "../../BASEURL";
+import Preloader from "../../Components/Preloader";
 
 export default function ManageImages() {
   const { id } = useParams();
@@ -16,6 +17,7 @@ export default function ManageImages() {
 
   // store objects with both full URL and original path so we can send API deletes
   const [images, setImages] = useState([]);
+  const [loadingImages, setLoadingImages] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
   const [notification, setNotification] = useState({ open: false, type: '', message: '' });
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -26,7 +28,11 @@ export default function ManageImages() {
     const controller = new AbortController();
     const load = async () => {
       try {
-        if (!id) return;
+        if (!id) {
+          setLoadingImages(false);
+          return;
+        }
+        setLoadingImages(true);
         const token = localStorage.getItem('admin-token');
         const headers = {};
         if (token) headers['Authorization'] = `Bearer ${token}`;
@@ -37,7 +43,7 @@ export default function ManageImages() {
         const project = data.project || data;
         let imgs = [];
         // Prefer explicit image1..image8 fields if present
-        const hasSlots = ['image1','image2','image3','image4','image5','image6','image7','image8'].some(k => project && Object.prototype.hasOwnProperty.call(project,k));
+        const hasSlots = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6', 'image7', 'image8'].some(k => project && Object.prototype.hasOwnProperty.call(project, k));
         if (hasSlots) {
           const slots = [];
           for (let i = 1; i <= 8; i++) {
@@ -47,13 +53,15 @@ export default function ManageImages() {
           imgs = slots;
         } else if (project && (project.images || project.projectImages || project.gallery)) {
           const arr = project.images || project.projectImages || project.gallery;
-          imgs = arr.map((p, idx) => ({ path: p, url: imageUrl(p), slot: idx+1 }));
+          imgs = arr.map((p, idx) => ({ path: p, url: imageUrl(p), slot: idx + 1 }));
         } else if (project && project.coverImage) {
           imgs = [{ path: project.coverImage, url: imageUrl(project.coverImage), slot: 1 }];
         }
         setImages(imgs);
+        setLoadingImages(false);
       } catch (err) {
         if (err.name !== 'AbortError') console.error('Failed to load project images', err);
+        setLoadingImages(false);
       }
     };
     load();
@@ -114,7 +122,7 @@ export default function ManageImages() {
         let updated = [];
         const project = data.project || data;
         // if server returned image1..image8, map them to slots
-        const hasSlotsResp = project && ['image1','image2','image3','image4','image5','image6','image7','image8'].some(k => Object.prototype.hasOwnProperty.call(project,k));
+        const hasSlotsResp = project && ['image1', 'image2', 'image3', 'image4', 'image5', 'image6', 'image7', 'image8'].some(k => Object.prototype.hasOwnProperty.call(project, k));
         if (project && hasSlotsResp) {
           for (let i = 1; i <= 8; i++) {
             const key = `image${i}`;
@@ -122,14 +130,14 @@ export default function ManageImages() {
           }
         } else if (project && (project.images || project.projectImages || project.gallery)) {
           const arr = project.images || project.projectImages || project.gallery;
-          updated = arr.map((p, idx) => ({ path: p, url: imageUrl(p), slot: idx+1 }));
+          updated = arr.map((p, idx) => ({ path: p, url: imageUrl(p), slot: idx + 1 }));
         } else {
           const r2 = await fetch(`${BASEURL}/admin/project/${id}`, { headers });
           if (r2.ok) {
             const d2 = await r2.json();
             const p2 = d2.project || d2;
             if (p2) {
-              const hasSlots2 = ['image1','image2','image3','image4','image5','image6','image7','image8'].some(k => Object.prototype.hasOwnProperty.call(p2,k));
+              const hasSlots2 = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6', 'image7', 'image8'].some(k => Object.prototype.hasOwnProperty.call(p2, k));
               if (hasSlots2) {
                 for (let i = 1; i <= 8; i++) {
                   const key = `image${i}`;
@@ -137,7 +145,7 @@ export default function ManageImages() {
                 }
               } else {
                 const arr2 = p2.images || p2.projectImages || p2.gallery || [];
-                updated = arr2.map((p, idx) => ({ path: p, url: imageUrl(p), slot: idx+1 }));
+                updated = arr2.map((p, idx) => ({ path: p, url: imageUrl(p), slot: idx + 1 }));
               }
             }
           }
@@ -198,86 +206,95 @@ export default function ManageImages() {
   };
 
   return (
-   <div className="px-4 py-6 w-full max-w-full overflow-hidden">
+    <div className="px-4 py-6 w-full max-w-full overflow-hidden">
 
-  {/* Header */}
-  <div className="flex justify-between items-center mb-6">
-    <h1 className="font-['Cormorant_Garamond'] font-bold text-3xl md:text-4xl text-[#2C4953]">
-      Manage Images
-    </h1>
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="font-['Cormorant_Garamond'] font-bold text-3xl md:text-4xl text-[#2C4953]">
+          Manage Images
+        </h1>
 
-    <Link
-      to="/admin/projectlist"
-      className="font-['Cormorant_Garamond'] font-black text-2xl text-[#2C4953]"
-    >
-      <i className="fa-solid fa-caret-left"></i>
-    </Link>
-  </div>
-
-  {/* Upload Input */}
-  <div className="mb-6 w-full">
-    {images.length < 8 ? (
-      <>
-        <input
-          ref={fileInputRef}
-          type="file"
-          multiple
-          onChange={handleFilesSelected}
-          disabled={isUploading}
-          className="border px-3 py-3 rounded-lg w-full"
-          accept="image/*"
-        />
-        <div className="mt-3 flex items-center gap-2">
-          <button
-            onClick={() => uploadFiles(selectedFiles)}
-            disabled={isUploading || !selectedFiles || selectedFiles.length === 0}
-            className="px-4 py-2 bg-[#2C4953] text-white rounded-md disabled:opacity-60"
-          >
-            {isUploading ? 'Uploading...' : 'Add Images'}
-          </button>
-          {selectedFiles && selectedFiles.length > 0 && (
-            <div className="text-sm text-gray-600">{selectedFiles.length} file(s) selected</div>
-          )}
-        </div>
-      </>
-    ) : (
-      <div className="text-sm text-gray-600">Maximum 8 images uploaded. Delete an image to add more.</div>
-    )}
-  </div>
-
-  {/* Image Grid */}
-  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-
-    {previewUrls.map((u, idx) => (
-      <div key={`preview-${idx}`} className="relative border rounded-xl shadow-md overflow-hidden w-full">
-        <img src={u} alt={`preview-${idx}`} className="w-full h-32 sm:h-36 md:h-40 object-cover" />
-        <div className="absolute bottom-2 left-2 bg-black/40 text-white text-xs px-2 py-1 rounded">Preview</div>
-      </div>
-    ))}
-
-    {images.map((imgObj, i) => (
-      <div
-        key={i}
-        className="relative border rounded-xl shadow-md overflow-hidden w-full"
-      >
-        <img
-          src={imgObj.url}
-          alt={`image-${i}`}
-          className="w-full h-32 sm:h-36 md:h-40 object-cover"
-        />
-
-        {/* Delete Button */}
-        <button
-          className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full"
-          onClick={() => deleteImage(imgObj)}
+        <Link
+          to="/admin/projectlist"
+          className="font-['Cormorant_Garamond'] font-black text-2xl text-[#2C4953]"
         >
-          <i className="fa-solid fa-trash"></i>
-        </button>
+          <i className="fa-solid fa-caret-left"></i>
+        </Link>
       </div>
-    ))}
 
-  </div>
-</div>
+      {/* Upload Input */}
+      <div className="mb-6 w-full">
+
+        {images.length < 8 ? (
+          <>
+            <input
+              ref={fileInputRef}
+              type="file"
+              multiple
+              onChange={handleFilesSelected}
+              disabled={isUploading}
+              className="border px-3 py-3 rounded-lg w-full"
+              accept="image/*"
+            />
+            <div className="mt-3 flex items-center gap-2">
+              <button
+                onClick={() => uploadFiles(selectedFiles)}
+                disabled={isUploading || !selectedFiles || selectedFiles.length === 0}
+                className="px-4 py-2 bg-[#2C4953] text-white rounded-md disabled:opacity-60"
+              >
+                {isUploading ? 'Uploading...' : 'Add Images'}
+              </button>
+              {selectedFiles && selectedFiles.length > 0 && (
+                <div className="text-sm text-gray-600">{selectedFiles.length} file(s) selected</div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="text-sm text-gray-600">Maximum 8 images uploaded. Delete an image to add more.</div>
+        )}
+      </div>
+
+      {/* Image Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+        {loadingImages ? (
+          <div className="col-span-full flex justify-center py-8">
+            <Preloader />
+          </div>
+        ) : (
+          <>
+            {previewUrls.map((u, idx) => (
+              <div key={`preview-${idx}`} className="relative border rounded-xl shadow-md overflow-hidden w-full">
+                <img src={u} alt={`preview-${idx}`} className="w-full h-32 sm:h-36 md:h-40 object-cover" />
+                <div className="absolute bottom-2 left-2 bg-black/40 text-white text-xs px-2 py-1 rounded">Preview</div>
+              </div>
+            ))}
+
+            {images.map((imgObj, i) => (
+              <div
+                key={i}
+                className="relative border rounded-xl shadow-md overflow-hidden w-full"
+              >
+                <img
+                  src={imgObj.url}
+                  alt={`image-${i}`}
+                  className="w-full h-32 sm:h-36 md:h-40 object-cover"
+                />
+
+                {/* Delete Button */}
+                <button
+                  className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full"
+                  onClick={() => deleteImage(imgObj)}
+                >
+                  <i className="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            ))}
+          </>
+        )}
+
+      </div>
+    </div>
 
   );
 }
