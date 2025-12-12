@@ -7,6 +7,7 @@ import AchievementSection from "../Components/AchievementSection";
 import DigitalShowcaseCarousel from "../Components/DigitalShowcaseCarousel";
 import CostCalculator from "../Components/CostCalculator";
 import { organizationSchema } from "../utils/schemaMarkup";
+import emailjs from '@emailjs/browser';
 
 
 export default function Home() {
@@ -19,6 +20,11 @@ export default function Home() {
   ];
 
   const [index, setIndex] = useState(0);
+
+  // Contact form state
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(null);
 
   // Auto-change image every 5 seconds
   useEffect(() => {
@@ -80,6 +86,52 @@ export default function Home() {
     }
     schemaScript.textContent = JSON.stringify(organizationSchema);
   }, []);
+
+  // Initialize EmailJS (public key)
+  useEffect(() => {
+    try {
+      emailjs.init('MmO--L7IF2RZe3SHg');
+    } catch (e) {
+      // initialization is best-effort; log if something goes wrong
+      console.warn('EmailJS init warning:', e);
+    }
+  }, []);
+
+  // Handle contact form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Submit handler using EmailJS
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSuccess(null);
+    setSending(true);
+
+    try {
+      const result = await emailjs.send(
+        'service_ee2hugz',
+        'template_30ul3wm',
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }
+      );
+
+      console.log('EmailJS result:', result);
+      setSuccess('Message sent successfully.');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setSuccess('Failed to send message. Please try again later.');
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans pt-18 md:pt-22 ">
@@ -268,28 +320,42 @@ export default function Home() {
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSubmit}
                 className="relative z-10 bg-transparent shadow-lg rounded-2xl p-8 border border-gray-200 "
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <input
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Your Name"
                     className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                    required
                   />
                   <input
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     type="email"
                     placeholder="Your Email"
                     className="w-full border border-white-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                    required
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Your Phone"
                     className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
                   />
                   <input
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     type="text"
                     placeholder="Subject"
                     className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
@@ -298,16 +364,25 @@ export default function Home() {
                 </div>
 
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Your Message"
                   rows="5"
                   className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
+                  required
                 ></textarea>
+
+                {success && (
+                  <div className="mb-4 text-center text-sm text-green-600">{success}</div>
+                )}
+
                 <button
                   type="submit"
-                  className="bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Cormorant_Garamond']
- text-3xl"
+                  disabled={sending}
+                  className={`bg-[#6b8c9a] text-white px-10 py-3 rounded-full font-semibold tracking-wide hover:bg-[#5b7d86] transition-all duration-300 w-full font-['Cormorant_Garamond'] text-3xl ${sending ? 'opacity-60 cursor-not-allowed' : ''}`}
                 >
-                  Send Message
+                  {sending ? 'Sending…' : 'Send Message'}
                 </button>
               </motion.form>
             </div>

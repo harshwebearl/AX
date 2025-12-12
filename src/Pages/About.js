@@ -7,7 +7,7 @@ import { FaArrowRight } from 'react-icons/fa';
 
 const About = () => {
   useEffect(() => {
-    document.title = "About AAx Kevalon Technology - Our Design Philosophy";
+    document.title = "About AAxiero Design Studio - Our Design Philosophy";
     
     const setMetaTag = (name, value, property = false) => {
       const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
