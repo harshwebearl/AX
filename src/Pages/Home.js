@@ -90,7 +90,7 @@ export default function Home() {
   // Initialize EmailJS (public key)
   useEffect(() => {
     try {
-      emailjs.init('MmO--L7IF2RZe3SHg');
+      emailjs.init('C_VFQP2ZRMif51LLu');
     } catch (e) {
       // initialization is best-effort; log if something goes wrong
       console.warn('EmailJS init warning:', e);
@@ -119,8 +119,8 @@ export default function Home() {
 
     try {
       const result = await emailjs.send(
-        'service_ee2hugz',
-        'template_30ul3wm',
+        'service_963clf6',
+        'template_yxtnsid',
         {
           name: formData.name,
           email: formData.email,
