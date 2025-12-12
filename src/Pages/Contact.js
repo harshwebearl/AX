@@ -21,11 +21,11 @@ const Contact = () => {
   // Set metadata using React 19 Metadata API
   useEffect(() => {
     document.title = "Contact AAxiero Design Studio - Get In Touch";
-    
+
     const setMetaTag = (name, value, property = false) => {
       const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
       let meta = document.querySelector(selector);
-      
+
       if (!meta) {
         meta = document.createElement('meta');
         if (property) {
@@ -35,7 +35,7 @@ const Contact = () => {
         }
         document.head.appendChild(meta);
       }
-      
+
       meta.setAttribute('content', value);
     };
 
@@ -83,6 +83,14 @@ const Contact = () => {
     }));
   };
 
+  const handlePhoneChange = (e) => {
+  const inputValue = e.target.value;
+  const onlyDigits = inputValue.replace(/\D/g, '');
+  
+  if (onlyDigits.length <= 10) {
+    setFormData({ ...formData, phone: onlyDigits });
+  }
+};
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -269,7 +277,9 @@ const Contact = () => {
                   name="phone"
                   placeholder="Your Phone"
                   value={formData.phone}
-                  onChange={handleChange}
+                  onChange={handlePhoneChange}  
+                  maxLength={10}
+                  pattern="[0-9]*"
                   required
                   className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
                 />

@@ -37,11 +37,11 @@ export default function Home() {
   // Set metadata using React 19 Metadata API
   useEffect(() => {
     document.title = "AAxiero Design Studio - Premium Interior & Architectural Design";
-    
+
     const setMetaTag = (name, value, property = false) => {
       const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
       let meta = document.querySelector(selector);
-      
+
       if (!meta) {
         meta = document.createElement('meta');
         if (property) {
@@ -51,7 +51,7 @@ export default function Home() {
         }
         document.head.appendChild(meta);
       }
-      
+
       meta.setAttribute('content', value);
     };
 
@@ -103,6 +103,14 @@ export default function Home() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handlePhoneChange = (e) => {
+  const inputValue = e.target.value;
+  const onlyDigits = inputValue.replace(/\D/g, '');
+  
+  if (onlyDigits.length <= 10) {
+    setFormData({ ...formData, phone: onlyDigits });
+  }
+};
   // Submit handler using EmailJS
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -345,11 +353,14 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <input
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
                     type="text"
+                    name="phone"
                     placeholder="Your Phone"
+                    value={formData.phone}
+                    onChange={handlePhoneChange} 
+                    maxLength={10}
+                    pattern="[0-9]*"
+                    required
                     className="w-full border border-white-300 rounded-md p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-[#6b8c9a]"
                   />
                   <input
