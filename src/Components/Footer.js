@@ -98,12 +98,12 @@ const Footer = () => {
               <i className="fa-solid fa-phone"></i> +91 84604 31159
             </a>
             <a
-              href="tel:91 81426 72731"
+              href="tel:91 81416 72731"
               target="_blank"
               rel=" noreferrer"
               className="text-[#253f47] hover:text-gray font-bold transition-colors text-2xl"
             >
-              <i className="fa-solid fa-phone"></i> +91 81426 72731
+              <i className="fa-solid fa-phone"></i> +91 81416 72731
             </a>
             <a
               href="mailto:aaxierodesignstudio@gmail.com"
