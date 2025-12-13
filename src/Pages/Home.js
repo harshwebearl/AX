@@ -247,7 +247,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="text-3xl font-bold font-['Cormorant_Garamond']
- ">Jainish Faldu</h4>
+ ">Jenish Faldu</h4>
                   <a
                     href="tel:+91 84604 31159"
                     className="text-gray-700 hover:text-[#6b8c9a] font-[Vollkorn] transition-colors"
