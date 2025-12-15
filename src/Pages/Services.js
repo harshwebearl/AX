@@ -85,12 +85,12 @@ export default function Services() {
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/services');
+    canonicalLink.setAttribute('href', 'https://www.aaxierodesignstudio.com/services');
 
     setMetaTag('og:type', 'website', true);
     setMetaTag('og:title', 'Our Services - AAxiero Design Studio', true);
     setMetaTag('og:description', 'Professional design services for residential and commercial spaces', true);
-    setMetaTag('og:url', 'https://aax.kevalontechnology.in/services', true);
+    setMetaTag('og:url', 'https://www.aaxierodesignstudio.com/services', true);
 
     let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="services"]');
     if (!schemaScript) {
@@ -104,7 +104,7 @@ export default function Services() {
       "@type": "LocalBusiness",
       "name": "AAxiero Design Studio",
       "description": "Professional interior design and architectural services",
-      "url": "https://aax.kevalontechnology.in/services",
+      "url": "https://www.aaxierodesignstudio.com/services",
       "serviceType": ["Interior Design", "Architectural Services", "3D Visualization"]
     });
   }, []);

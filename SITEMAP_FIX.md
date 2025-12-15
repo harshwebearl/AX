@@ -76,7 +76,7 @@ Created `/vercel.json` for Vercel deployments:
 
 ## Testing the Fix
 
-1. After deployment, visit: `https://aax.kevalontechnology.in/sitemap.xml`
+1. After deployment, visit: `https://www.aaxierodesignstudio.com/sitemap.xml`
 2. Check the response headers - should show:
    ```
    Content-Type: application/xml; charset=utf-8

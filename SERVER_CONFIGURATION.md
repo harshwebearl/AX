@@ -30,7 +30,7 @@ This guide explains how to properly configure your server to serve `sitemap.xml`
 **Verification:**
 ```bash
 # Check headers with curl
-curl -I https://aax.kevalontechnology.in/sitemap.xml
+curl -I https://www.aaxierodesignstudio.com/sitemap.xml
 # Should return: Content-Type: application/xml; charset=UTF-8
 ```
 
@@ -57,7 +57,7 @@ curl -I https://aax.kevalontechnology.in/sitemap.xml
 1. Open IIS Manager
 2. Navigate to your site
 3. Check MIME Types - should show `.xml` as `application/xml`
-4. Test with: `https://aax.kevalontechnology.in/sitemap.xml`
+4. Test with: `https://www.aaxierodesignstudio.com/sitemap.xml`
 
 **Troubleshooting:**
 - If headers aren't applied, ensure `StaticFile` module is enabled in IIS
@@ -198,7 +198,7 @@ curl -I https://your-site.vercel.app/sitemap.xml
 ```nginx
 server {
     listen 80;
-    server_name aax.kevalontechnology.in;
+    server_name aaxierodesignstudio.com;
 
     # Sitemap configuration
     location /sitemap.xml {
@@ -234,7 +234,7 @@ After deploying your configuration:
 ### 1. Check Headers
 ```bash
 # Using curl
-curl -I https://aax.kevalontechnology.in/sitemap.xml
+curl -I https://www.aaxierodesignstudio.com/sitemap.xml
 
 # Expected output should include:
 # Content-Type: application/xml; charset=utf-8
@@ -243,7 +243,7 @@ curl -I https://aax.kevalontechnology.in/sitemap.xml
 ### 2. Check in Browser
 1. Open Chrome DevTools (F12)
 2. Go to Network tab
-3. Visit `https://aax.kevalontechnology.in/sitemap.xml`
+3. Visit `https://www.aaxierodesignstudio.com/sitemap.xml`
 4. Click on the request
 5. Go to Headers tab
 6. Look for `Content-Type: application/xml`
@@ -252,7 +252,7 @@ curl -I https://aax.kevalontechnology.in/sitemap.xml
 1. Go to Google Search Console
 2. Select your property
 3. Go to Sitemaps
-4. Submit or re-submit: `https://aax.kevalontechnology.in/sitemap.xml`
+4. Submit or re-submit: `https://www.aaxierodesignstudio.com/sitemap.xml`
 5. Wait a few minutes for processing
 
 ### 4. Online Tools

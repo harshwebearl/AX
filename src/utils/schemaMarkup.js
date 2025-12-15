@@ -8,9 +8,9 @@ export const organizationSchema = {
   "@type": "Organization",
   "name": "AAxiero Design Studio",
   "description": "Premium interior design and architectural visualization services",
-  "url": "https://aax.kevalontechnology.in",
-  "logo": "https://aax.kevalontechnology.in/images/logo/logo.png",
-  "image": "https://aax.kevalontechnology.in/images/og-image.jpg",
+  "url": "https://www.aaxierodesignstudio.com",
+  "logo": "https://www.aaxierodesignstudio.com/images/logo/logo.png",
+  "image": "https://www.aaxierodesignstudio.com/images/og-image.jpg",
   "sameAs": [
     "https://facebook.com/aaxiero",
     "https://instagram.com/aaxiero",
@@ -48,7 +48,7 @@ export const projectSchema = (project) => ({
   "creator": {
     "@type": "Organization",
     "name": "AAxiero Design Studio",
-    "url": "https://aax.kevalontechnology.in"
+    "url": "https://www.aaxierodesignstudio.com"
   },
   "datePublished": project.date,
   "url": project.url
@@ -62,7 +62,7 @@ export const serviceSchema = (service) => ({
   "provider": {
     "@type": "Organization",
     "name": "AAxiero Design Studio",
-    "url": "https://aax.kevalontechnology.in"
+    "url": "https://www.aaxierodesignstudio.com"
   },
   "image": service.image,
   "areaServed": "IN"

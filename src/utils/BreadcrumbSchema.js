@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 export const BreadcrumbWithSchema = ({ items = [] }) => {
   // Default breadcrumb
   const defaultItems = [
-    { name: 'Home', url: 'https://aax.kevalontechnology.in' }
+    { name: 'Home', url: 'https://www.aaxierodesignstudio.com' }
   ];
 
   const breadcrumbs = items.length > 0 ? [...defaultItems, ...items] : defaultItems;

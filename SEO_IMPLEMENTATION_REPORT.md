@@ -178,7 +178,7 @@
 
 ### Configuration Required
 Update these in code when you have final domain:
-- Replace `https://aax.kevalontechnology.in` with actual domain
+- Replace `https://www.aaxierodesignstudio.com` with actual domain
 - Uncomment Google Analytics code in index.html
 - Add Google Search Console verification code
 - Add Google Tag Manager ID

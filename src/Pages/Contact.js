@@ -48,12 +48,12 @@ const Contact = () => {
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/contact');
+    canonicalLink.setAttribute('href', 'https://www.aaxierodesignstudio.com/contact');
 
     setMetaTag('og:type', 'website', true);
     setMetaTag('og:title', 'Contact AAxiero Design Studio', true);
     setMetaTag('og:description', 'Get in touch with our design experts for your next project', true);
-    setMetaTag('og:url', 'https://aax.kevalontechnology.in/contact', true);
+    setMetaTag('og:url', 'https://www.aaxierodesignstudio.com/contact', true);
 
     let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="contact"]');
     if (!schemaScript) {
@@ -66,7 +66,7 @@ const Contact = () => {
       "@context": "https://schema.org",
       "@type": "ContactPage",
       "name": "Contact AAxiero Design Studio",
-      "url": "https://aax.kevalontechnology.in/contact"
+      "url": "https://www.aaxierodesignstudio.com/contact"
     });
   }, []);
 

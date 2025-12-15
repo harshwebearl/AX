@@ -163,12 +163,12 @@ const Projects = () => {
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/projects');
+    canonicalLink.setAttribute('href', 'https://www.aaxierodesignstudio.com/projects');
 
     setMetaTag('og:type', 'website', true);
     setMetaTag('og:title', 'Our Projects - AAxiero Design Studio', true);
     setMetaTag('og:description', 'Explore our portfolio of exceptional design projects', true);
-    setMetaTag('og:url', 'https://aax.kevalontechnology.in/projects', true);
+    setMetaTag('og:url', 'https://www.aaxierodesignstudio.com/projects', true);
 
     let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="projects"]');
     if (!schemaScript) {

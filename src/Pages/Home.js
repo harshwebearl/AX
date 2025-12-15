@@ -64,18 +64,18 @@ export default function Home() {
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/');
+    canonicalLink.setAttribute('href', 'https://www.aaxierodesignstudio.com/');
 
     setMetaTag('og:type', 'website', true);
     setMetaTag('og:title', 'AAxiero Design Studio - Premium Interior & Architectural Design', true);
     setMetaTag('og:description', 'Transform your vision into reality with expert interior design and architectural services', true);
-    setMetaTag('og:url', 'https://aax.kevalontechnology.in/', true);
-    setMetaTag('og:image', 'https://aax.kevalontechnology.in/images/og-image.jpg', true);
+    setMetaTag('og:url', 'https://www.aaxierodesignstudio.com/', true);
+    setMetaTag('og:image', 'https://www.aaxierodesignstudio.com/images/og-image.jpg', true);
 
     setMetaTag('twitter:card', 'summary_large_image');
     setMetaTag('twitter:title', 'AAxiero Design Studio');
     setMetaTag('twitter:description', 'Premium Interior & Architectural Design Services');
-    setMetaTag('twitter:image', 'https://aax.kevalontechnology.in/images/og-image.jpg');
+    setMetaTag('twitter:image', 'https://www.aaxierodesignstudio.com/images/og-image.jpg');
 
     let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="organization"]');
     if (!schemaScript) {

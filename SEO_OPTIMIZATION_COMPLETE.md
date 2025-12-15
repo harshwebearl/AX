@@ -120,7 +120,7 @@ Implemented JSON-LD for:
 ### 14. **Canonical Tags** ✓
 - Canonical tag on every page
 - Prevents duplicate content issues
-- Format: https://aax.kevalontechnology.in[page-path]
+- Format: https://www.aaxierodesignstudio.com[page-path]
 
 ### 15. **SSL Certificate (HTTPS)** ✓
 - Website should be deployed with HTTPS
@@ -205,7 +205,7 @@ npm install react-helmet-async
 ### 3. Configuration Needed
 
 Update these values in your deployment:
-- Replace `https://aax.kevalontechnology.in` with your actual domain
+- Replace `https://www.aaxierodesignstudio.com` with your actual domain
 - Add Google Analytics tracking code (commented in index.html)
 - Add Google Search Console verification code (commented in index.html)
 - Add Google Tag Manager code (commented in index.html)

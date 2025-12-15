@@ -35,12 +35,12 @@ const About = () => {
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', 'https://aax.kevalontechnology.in/about');
+    canonicalLink.setAttribute('href', 'https://www.aaxierodesignstudio.com/about');
 
     setMetaTag('og:type', 'website', true);
     setMetaTag('og:title', 'About AAxiero Design Studio - Our Design Philosophy', true);
     setMetaTag('og:description', 'Discover our design philosophy and approach to creating meaningful spaces', true);
-    setMetaTag('og:url', 'https://aax.kevalontechnology.in/about', true);
+    setMetaTag('og:url', 'https://www.aaxierodesignstudio.com/about', true);
 
     let schemaScript = document.querySelector('script[type="application/ld+json"][data-type="about"]');
     if (!schemaScript) {
@@ -56,7 +56,7 @@ const About = () => {
         "@type": "Organization",
         "name": "AAxiero Design Studio",
         "description": "Premium interior design and architectural visualization services with precision and innovation",
-        "url": "https://aax.kevalontechnology.in",
+        "url": "https://www.aaxierodesignstudio.com",
         "knowsAbout": ["Interior Design", "Architecture", "Space Design", "Architectural Visualization"]
       }
     });

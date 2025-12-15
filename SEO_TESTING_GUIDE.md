@@ -171,7 +171,7 @@ After deploying your website, use these tools and methods to verify SEO optimiza
 ### Home Page
 Test these specific items:
 
-**URL:** `https://aax.kevalontechnology.in/`
+**URL:** `https://www.aaxierodesignstudio.com/`
 
 ```
 ✅ Title: "AAxiero Design Studio - Premium Interior & Architectural Design"
@@ -179,11 +179,11 @@ Test these specific items:
 ✅ Schema: Organization + LocalBusiness
 ✅ H1: "You Dream, We Design" (or variation)
 ✅ OG Tags: Present with image
-✅ Canonical: https://aax.kevalontechnology.in/
+✅ Canonical: https://www.aaxierodesignstudio.com/
 ```
 
 ### About Page
-**URL:** `https://aax.kevalontechnology.in/about`
+**URL:** `https://www.aaxierodesignstudio.com/about`
 
 ```
 ✅ Title: "About AAxiero Design Studio - Our Design Philosophy"
@@ -194,7 +194,7 @@ Test these specific items:
 ```
 
 ### Projects Page
-**URL:** `https://aax.kevalontechnology.in/projects`
+**URL:** `https://www.aaxierodesignstudio.com/projects`
 
 ```
 ✅ Title: "Our Projects - AAxiero Design Studio Portfolio"
@@ -205,7 +205,7 @@ Test these specific items:
 ```
 
 ### Services Page
-**URL:** `https://aax.kevalontechnology.in/services`
+**URL:** `https://www.aaxierodesignstudio.com/services`
 
 ```
 ✅ Title: "Our Services - AAxiero Design Studio"
@@ -216,7 +216,7 @@ Test these specific items:
 ```
 
 ### Gallery Page
-**URL:** `https://aax.kevalontechnology.in/gallery`
+**URL:** `https://www.aaxierodesignstudio.com/gallery`
 
 ```
 ✅ Title: "Image Gallery - AAxiero Design Studio"
@@ -227,7 +227,7 @@ Test these specific items:
 ```
 
 ### Contact Page
-**URL:** `https://aax.kevalontechnology.in/contact`
+**URL:** `https://www.aaxierodesignstudio.com/contact`
 
 ```
 ✅ Title: "Contact AAxiero Design Studio - Get In Touch"
@@ -245,7 +245,7 @@ Test these specific items:
 ### 1. Add Property
 1. Go to Google Search Console
 2. Click "Add Property"
-3. Enter your domain: `https://aax.kevalontechnology.in`
+3. Enter your domain: `https://www.aaxierodesignstudio.com`
 4. Verify ownership
 
 ### 2. Submit Sitemap

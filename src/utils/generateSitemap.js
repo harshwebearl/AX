@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SITE_URL = 'https://aax.kevalontechnology.in';
+const SITE_URL = 'https://www.aaxierodesignstudio.com';
 const PAGES = [
   { url: '/', changefreq: 'weekly', priority: '1.0' },
   { url: '/about', changefreq: 'monthly', priority: '0.9' },

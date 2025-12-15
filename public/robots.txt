@@ -28,7 +28,7 @@ Crawl-delay: 1
 Request-rate: 1/1s
 
 # Sitemap location
-Sitemap: https://aax.kevalontechnology.in/sitemap.xml
+Sitemap: https://www.aaxierodesignstudio.com/sitemap.xml
 
 # Google-specific rules
 User-agent: Googlebot
