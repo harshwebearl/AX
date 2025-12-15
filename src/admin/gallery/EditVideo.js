@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { BASEURL } from "../../BASEURL";
 
 export default function EditVideo() {
   const { id } = useParams();
@@ -8,33 +9,52 @@ export default function EditVideo() {
   const [title, setTitle] = useState("");
   const [youtubeId, setYoutubeId] = useState("");
 
-  /* 🔹 Dummy fetch (replace with API later) */
+  /* 🔹 Fetch video data from API */
   useEffect(() => {
-    // Simulate API response
-    const existingVideo = {
-      title: "Luxury Villa Walkthrough",
-      youtubeId: "dQw4w9WgXcQ",
+    const fetchVideo = async () => {
+      try {
+        const res = await fetch(`${BASEURL}/admin/videos/${id}`);
+        if (!res.ok) {
+          console.error("Failed to fetch video");
+          return;
+        }
+        const data = await res.json();
+        const video = data.video || data;
+        setTitle(video.title || "");
+        setYoutubeId(video.youtubeId || "");
+      } catch (err) {
+        console.error("Error fetching video:", err);
+      }
     };
-
-    setTitle(existingVideo.title);
-    setYoutubeId(existingVideo.youtubeId);
+    if (id) fetchVideo();
   }, [id]);
 
   /* SAVE HANDLER */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const updatedVideo = {
-      id,
       title,
       youtubeId,
     };
 
-    console.log("Updated Video:", updatedVideo);
-
-    // 🔥 API CALL GOES HERE
-
-    navigate("/admin/gallerylist");
+    try {
+      const res = await fetch(`${BASEURL}/admin/videos/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedVideo),
+      });
+      if (!res.ok) {
+        console.error("Failed to update video");
+        return;
+      }
+      console.log("Video updated successfully");
+      navigate("/admin/gallerylist");
+    } catch (err) {
+      console.error("Error updating video:", err);
+    }
   };
 
   return (

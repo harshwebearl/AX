@@ -7,7 +7,9 @@ export default function GalleryList() {
 
   // categories now loaded from API (`/admin/categories`)
   const [galleryCategories, setGalleryCategories] = useState([]);
+  const [galleryVideos, setGalleryVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [videosLoading, setVideosLoading] = useState(true);
   const IMAGE_HOST = "https://aaxiero.kevalontechnology.in";
   const imageUrl = (p, fallback = "/images/project/1.jpg") => {
     if (!p) return fallback;
@@ -15,39 +17,6 @@ export default function GalleryList() {
     if (p.startsWith("/")) return `${IMAGE_HOST}${p}`;
     return `${IMAGE_HOST}/${p}`;
   };
-
-  const galleryVideos = [
-    {
-      id: 1,
-      title: "Luxury Villa Walkthrough",
-      youtubeId: "m8la0UGly3Q",
-    },
-    {
-      id: 2,
-      title: "Modern Interior Design",
-      youtubeId: "XbsGeheuuV0",
-    },
-    {
-      id: 3,
-      title: "Luxury Villa Walkthrough",
-      youtubeId: "m8la0UGly3Q",
-    },
-    {
-      id: 4,
-      title: "Modern Interior Design",
-      youtubeId: "XbsGeheuuV0",
-    },
-    {
-      id: 5,
-      title: "Luxury Villa Walkthrough",
-      youtubeId: "m8la0UGly3Q",
-    },
-    {
-      id: 6,
-      title: "Modern Interior Design",
-      youtubeId: "XbsGeheuuV0",
-    },
-  ];
 
   useEffect(() => {
     let mounted = true;
@@ -73,6 +42,33 @@ export default function GalleryList() {
       }
     };
     load();
+    return () => { mounted = false; };
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+    const loadVideos = async () => {
+      try {
+        const res = await fetch(`${BASEURL}/admin/videos`);
+        if (!res.ok) {
+          setVideosLoading(false);
+          return;
+        }
+        const data = await res.json();
+        const list = data.videos || data || [];
+        const vids = (Array.isArray(list) ? list : []).map((v) => ({
+          id: v._id || v.id,
+          title: v.title,
+          youtubeId: v.youtubeId,
+        }));
+        if (mounted) setGalleryVideos(vids);
+      } catch (err) {
+        console.error("Failed to load gallery videos", err);
+      } finally {
+        if (mounted) setVideosLoading(false);
+      }
+    };
+    loadVideos();
     return () => { mounted = false; };
   }, []);
 
@@ -139,34 +135,42 @@ export default function GalleryList() {
 
         {/* Video Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryVideos.map((video) => (
-            <div
-              key={video.id}
-              className="bg-white border border-[#2C4953]/30 rounded-xl shadow-md p-4"
-            >
-              <iframe
-                src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                className="w-full aspect-video rounded-lg"
-                allowFullScreen
-                title={video.title}
-              ></iframe>
-
-              <h3 className="mt-3 font-['Vollkorn'] text-[#2C4953] font-semibold text-lg">
-                {video.title}
-              </h3>
-
-              {/* Actions */}
-              <div className="flex justify-between mt-4">
-                <Link
-                  to={`/admin/edit-video/${video.id}`}
-                  className="text-[#2C4953] hover:text-[#6b8c9a] border border-[#2C4953] p-1 rounded-lg hover:bg-[#2C4953] hover:text-white transition duration"
-                >
-                  Edit Video Link
-                </Link>
-
-              </div>
+          {videosLoading ? (
+            <div className="col-span-full flex justify-center py-8">
+              <Preloader />
             </div>
-          ))}
+          ) : galleryVideos.length === 0 ? (
+            <div className="col-span-full text-center text-gray-600 py-8">No videos found.</div>
+          ) : (
+            galleryVideos.map((video) => (
+              <div
+                key={video.id}
+                className="bg-white border border-[#2C4953]/30 rounded-xl shadow-md p-4"
+              >
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                  className="w-full aspect-video rounded-lg"
+                  allowFullScreen
+                  title={video.title}
+                ></iframe>
+
+                <h3 className="mt-3 font-['Vollkorn'] text-[#2C4953] font-semibold text-lg">
+                  {video.title}
+                </h3>
+
+                {/* Actions */}
+                <div className="flex justify-between mt-4">
+                  <Link
+                    to={`/admin/edit-video/${video.id}`}
+                    className="text-[#2C4953] hover:text-[#6b8c9a] border border-[#2C4953] p-1 rounded-lg hover:bg-[#2C4953] hover:text-white transition duration"
+                  >
+                    Edit Video Link
+                  </Link>
+
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </section>
     </div>
