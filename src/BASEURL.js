@@ -1,1 +1,1 @@
-export const BASEURL = "https://aaxiero.kevalontechnology.in/aaxiero";
+export const BASEURL = "https://aaxiero.aaxierodesignstudio.com/aaxiero";
