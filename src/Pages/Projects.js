@@ -56,7 +56,7 @@ const Projects = () => {
 
   // categories will be loaded from the API
   const [categories, setCategories] = useState([]);
-  const IMAGE_HOST = "https://aaxiero.kevalontechnology.in";
+  const IMAGE_HOST = "https://aaxiero.aaxierodesignstudio.com";
   const imageUrl = (p) => {
     if (!p) return "";
     if (p.startsWith("http") || p.startsWith("data:")) return p;

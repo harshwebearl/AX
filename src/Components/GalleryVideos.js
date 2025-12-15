@@ -1,39 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { BASEURL } from "../BASEURL";
 
 export default function GalleryVideos() {
-  const videos = [
-    {
-      id: 1,
-      title: "Luxury Villa Walkthrough",
-      youtubeId: "m8la0UGly3Q",
-    },
-    {
-      id: 2,
-      title: "Modern Interior Design",
-      youtubeId: "XbsGeheuuV0",
-    },
-    {
-      id: 3,
-      title: "Luxury Villa Walkthrough",
-      youtubeId: "m8la0UGly3Q",
-    },
-    {
-      id: 4,
-      title: "Modern Interior Design",
-      youtubeId: "XbsGeheuuV0",
-    },
-    {
-      id: 5,
-      title: "Luxury Villa Walkthrough",
-      youtubeId: "m8la0UGly3Q",
-    },
-    {
-      id: 6,
-      title: "Modern Interior Design",
-      youtubeId: "XbsGeheuuV0",
-    },
-  ];
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const response = await fetch(`${BASEURL}/videos`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch videos');
+        }
+        const data = await response.json();
+        setVideos(data.videos || data); // Assuming the API returns { videos: [...] } or directly the array
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-[#f7f9f9]">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-xl text-[#2C4953]">Loading videos...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="py-20 bg-[#f7f9f9]">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-xl text-[#2C4953]">Error loading videos: {error}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-[#f7f9f9]">

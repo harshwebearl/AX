@@ -13,14 +13,14 @@ const Gallery = () => {
   const [error, setError] = useState(null);
 
   // Provided image base URL
-  const IMAGE_BASE = "https://aaxiero.kevalontechnology.in";
+  const IMAGE_BASE = "https://aaxiero.aaxierodesignstudio.com";
 
   useEffect(() => {
     let mounted = true;
     setLoading(true);
     setError(null);
 
-    fetch('https://aaxiero.kevalontechnology.in/aaxiero/admin/gallery')
+    fetch('https://aaxiero.aaxierodesignstudio.com/aaxiero/admin/gallery')
       .then((res) => {
         const ct = res.headers.get('content-type') || '';
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
