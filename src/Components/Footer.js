@@ -75,10 +75,10 @@ const Footer = () => {
           </h3>
           <ul className="space-y-2 pt-5 text-gray-700 border-t text-2xl font-bold border-gray-200 font-['Cormorant_Garamond']
 ">
-            <li><Link to="/home" className="hover:text-[#2C4953] transition">Architecture Work</Link></li>
-            <li><Link to="/about" className="hover:text-[#2C4953] transition">House Interior</Link></li>
-            <li><Link to="/Gallery" className="hover:text-[#2C4953] transition">Office Interior</Link></li>
-            <li><Link to="/projects" className="hover:text-[#2C4953] transition">Bunglow Interior</Link></li>
+            <li><Link to="/projects?category=Architecture" className="hover:text-[#2C4953] transition">Architecture</Link></li>
+            <li><Link to="/projects?category=Office Interior" className="hover:text-[#2C4953] transition">Office Interior</Link></li>
+            <li><Link to="/projects?category=Commercial Interior" className="hover:text-[#2C4953] transition">Commercial Interior</Link></li>
+            <li><Link to="/projects?category=House Interior" className="hover:text-[#2C4953] transition">House Interior</Link></li>
           </ul>
         </div>
 
@@ -131,10 +131,10 @@ const Footer = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 ">
         {/* 4 images */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <img src="/images/project/2.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
-          <img src="/images/project/4.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
-          <img src="/images/project/6.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
-          <img src="/images/project/8.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/Footer1.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/Footer2.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/Footer3.jpg" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
+          <img src="/images/project/Footer4.png" alt="AAxiero Design Studio" className="rounded-lg object-cover h-32 w-full" />
         </div>
 
 

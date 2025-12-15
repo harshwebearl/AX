@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
 import Preloader from "../Components/Preloader";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { BASEURL } from "../BASEURL";
+import { useSearchParams } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -63,6 +64,9 @@ const Projects = () => {
     return `${IMAGE_HOST}/${p}`;
   };
 
+  const [searchParams] = useSearchParams();
+  const categoryFromUrl = searchParams.get('category');
+
   useEffect(() => {
     const load = async () => {
       try {
@@ -115,13 +119,16 @@ const Projects = () => {
     loadProjects();
   }, []);
 
-  // set first category as active once loaded
+  // set first category as active once loaded, or from URL
   const [activeCategoryName, setActiveCategoryName] = useState(null);
   useEffect(() => {
-    if (!activeCategoryName && categories && categories.length > 0) {
-      setActiveCategoryName(categories[0].name);
+    if (categoryFromUrl && categories.some(cat => cat.name === categoryFromUrl)) {
+      setActiveCategoryName(categoryFromUrl);
+    } else if (!activeCategoryName && categories && categories.length > 0) {
+      const defaultCat = categories.find(cat => cat.name === "Architecture") || categories[0];
+      setActiveCategoryName(defaultCat.name);
     }
-  }, [categories, activeCategoryName]);
+  }, [categories, categoryFromUrl, activeCategoryName]);
 
   // Get the active category object from the updated categories array
   const activeCategory = categories.find(cat => cat.name === activeCategoryName) || categories[0];

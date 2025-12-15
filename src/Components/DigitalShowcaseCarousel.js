@@ -11,7 +11,7 @@ export default function DigitalShowcaseCarousel() {
   const products = [
     {
       image: "/images/project/1.jpg",
-      title: "Modern Villa Concept",
+      title: "Heritage Villa Concept",
       category: "3D Visualization",
       desc: "Experience the luxury of our modern villa design — a fusion of clean geometry and nature-inspired living.",
     },

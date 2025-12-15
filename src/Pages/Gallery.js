@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Breadchrumb from "../Components/Breadchrumb";
 import Preloader from "../Components/Preloader";
+import GalleryVideos from "../Components/GalleryVideos";
 
 const Gallery = () => {
   // state
@@ -195,6 +196,7 @@ const Gallery = () => {
         )}
       </div>
     </section>
+    <GalleryVideos />
   </>
   )
 }

@@ -16,6 +16,39 @@ export default function GalleryList() {
     return `${IMAGE_HOST}/${p}`;
   };
 
+  const galleryVideos = [
+    {
+      id: 1,
+      title: "Luxury Villa Walkthrough",
+      youtubeId: "m8la0UGly3Q",
+    },
+    {
+      id: 2,
+      title: "Modern Interior Design",
+      youtubeId: "XbsGeheuuV0",
+    },
+    {
+      id: 3,
+      title: "Luxury Villa Walkthrough",
+      youtubeId: "m8la0UGly3Q",
+    },
+    {
+      id: 4,
+      title: "Modern Interior Design",
+      youtubeId: "XbsGeheuuV0",
+    },
+    {
+      id: 5,
+      title: "Luxury Villa Walkthrough",
+      youtubeId: "m8la0UGly3Q",
+    },
+    {
+      id: 6,
+      title: "Modern Interior Design",
+      youtubeId: "XbsGeheuuV0",
+    },
+  ];
+
   useEffect(() => {
     let mounted = true;
     const load = async () => {
@@ -96,7 +129,46 @@ export default function GalleryList() {
           ))
         )}
       </div>
+      <section className="mt-20">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+          <h1 className="text-3xl font-['Vollkorn'] font-bold text-[#2C4953]">
+            Gallery Videos
+          </h1>
+        </div>
 
+        {/* Video Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryVideos.map((video) => (
+            <div
+              key={video.id}
+              className="bg-white border border-[#2C4953]/30 rounded-xl shadow-md p-4"
+            >
+              <iframe
+                src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                className="w-full aspect-video rounded-lg"
+                allowFullScreen
+                title={video.title}
+              ></iframe>
+
+              <h3 className="mt-3 font-['Vollkorn'] text-[#2C4953] font-semibold text-lg">
+                {video.title}
+              </h3>
+
+              {/* Actions */}
+              <div className="flex justify-between mt-4">
+                <Link
+                  to={`/admin/edit-video/${video.id}`}
+                  className="text-[#2C4953] hover:text-[#6b8c9a] border border-[#2C4953] p-1 rounded-lg hover:bg-[#2C4953] hover:text-white transition duration"
+                >
+                  Edit Video Link
+                </Link>
+
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

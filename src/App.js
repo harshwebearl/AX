@@ -25,6 +25,7 @@ import GalleryImages from './admin/gallery/GalleryImages';
 import ServiceList from './admin/services/ServiceList';
 import AddService from './admin/services/AddService';
 import EditService from './admin/services/EditService';
+import EditVideo from './admin/gallery/EditVideo';
 
 
 
@@ -34,7 +35,7 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />   
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/gallery" element={<Gallery />} />
@@ -58,7 +59,7 @@ function App() {
           <Route path="gallery/:categoryId" element={<GalleryImages />} />
           <Route path="add-gallery" element={<AddGallery />} />
           <Route path="edit-gallery/:id" element={<EditGallery />} />
-
+          <Route path="edit-video/:id" element={<EditVideo />} />
           {/* SERVICE ROUTES */}
           <Route path="servicelist" element={<ServiceList />} />
           <Route path="add-service" element={<AddService />} />
