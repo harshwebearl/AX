@@ -114,20 +114,11 @@ export default function Navbar() {
         </ul>
 
         {/* Mobile Menu Button */}
-         <a
-              href="https://maps.app.goo.gl/XqGaVmG2LRR9EnAF9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:block text-[#2C4953] hover:text-gray-600 transition-colors font-bold text-md sm:text-xl border-[#2C4953] rounded-md hover:bg-[#2C4953] hover:text-white text-center ml-2 sm:pb-2 pb-1 sm:px-2 px-[4px] p-1 border-2 "
+        {/* Mobile Menu Button */}
+         <Link to="/contact"
+              className=" text-[2C4953_1] hover:text-gray-600 transition-colors font-bold text-md sm:text-xl border-[2C4953_1] rounded-md hover:bg-[2C4953_1] hover:text-white text-center ml-2 sm:pb-2 pb-1 sm:px-2 px-[4px] p-1 border-2 "
             >
-            Get <br className="sm:hidden block"  /> Quote </a>
-         <a
-              href="tel:+91 84604 31159"
-              target="_blank"
-              rel="noopener noreferrer"
-              className=" lg:hidden text-[#2C4953] hover:text-gray-600 transition-colors font-bold text-md sm:text-xl border-[#2C4953] rounded-md hover:bg-[#2C4953] hover:text-white text-center ml-2 sm:pb-2 pb-1 sm:px-2 px-[4px] p-1 border-2 "
-            >
-            Get <br className="sm:hidden block"  /> Quote </a>
+            Get <br className="sm:hidden block"  /> Quote </Link>
         <button
           className="lg:hidden text-[#2C4953] text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
