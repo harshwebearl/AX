@@ -35,33 +35,11 @@ export default function AdminDashboard() {
           setTotalProjects(count);
         }
 
-        // Fetch gallery images
-        const categoriesRes = await fetch(`${BASEURL}/admin/categories`, { headers });
-        if (categoriesRes.ok) {
-          const categoriesData = await categoriesRes.json();
-          const categories = categoriesData.categories || categoriesData.data || [];
-          let totalImages = 0;
-          
-          // Fetch images from each category
-          if (Array.isArray(categories)) {
-            for (const cat of categories) {
-              const catId = cat._id || cat.id;
-              if (catId) {
-                try {
-                  const galleryRes = await fetch(`${BASEURL}/admin/gallery/${catId}`, { headers });
-                  if (galleryRes.ok) {
-                    const galleryData = await galleryRes.json();
-                    const images = galleryData.images || galleryData.data || [];
-                    totalImages += Array.isArray(images) ? images.length : 0;
-                  }
-                } catch (err) {
-                  console.warn(`Failed to fetch images for category ${catId}`, err);
-                }
-              }
-            }
-          }
-          
-          setTotalGalleryImages(totalImages);
+        // Fetch gallery images total
+        const galleryTotalRes = await fetch(`${BASEURL}/admin/gallery/total`, { headers });
+        if (galleryTotalRes.ok) {
+          const galleryTotalData = await galleryTotalRes.json();
+          setTotalGalleryImages(galleryTotalData.totalImages || 0);
         }
       } catch (err) {
         console.error("Failed to fetch data", err);
@@ -106,7 +84,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <p className="text-[#2C4953] font-[Vollkorn] text-2xl">Gallery Images</p>
-              <h2 className="text-3xl text-[#2C4953] font-bold text-center font-['Cormorant_Garamond']">120</h2>
+              <h2 className="text-3xl text-[#2C4953] font-bold text-center font-['Cormorant_Garamond']">{loading ? "..." : totalGalleryImages}</h2>
             </div>
           </div>
 </Link>
