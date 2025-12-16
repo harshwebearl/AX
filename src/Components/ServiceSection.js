@@ -11,7 +11,7 @@ export default function Gallery() {
     },
     {
       icon: <FaBuilding className="text-4xl text-[#2C4953]" />,
-      title: "Interior Planning",
+      title: "Interior Designing",
       desc: "Our interiors balance beauty and practicality — designed with precision, texture, and a focus on human comfort.",
     },
     {
